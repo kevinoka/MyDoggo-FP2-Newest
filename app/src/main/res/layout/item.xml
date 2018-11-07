@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="40sp"
+    android:paddingRight="40sp"
+    android:paddingTop="20sp"
+    android:paddingBottom="20sp"
+    android:outlineProvider="bounds"
+    android:clipToPadding="false">
+
+    <android.support.design.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:elevation="2dp"
+        android:id="@+id/cardViewAdoption">
+
+        <FrameLayout
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="400dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/image_adoption"/>
+
+            <TextView
+                android:id="@+id/dog_name"
+                android:textSize="40sp"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:layout_gravity="bottom|center"
+                android:background="@android:color/darker_gray"
+                tools:text="hello"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </FrameLayout>
+
+    </android.support.design.card.MaterialCardView>
+
+</LinearLayout>
