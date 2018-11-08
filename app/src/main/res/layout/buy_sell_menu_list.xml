@@ -23,13 +23,14 @@
             android:layout_height="wrap_content" >
 
             <ImageView
+                android:contentDescription="dog image"
                 android:id="@+id/BSDogImage"
-                android:layout_marginBottom="108dp"
-                android:layout_width="wrap_content"
+                android:layout_marginBottom="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:text="AZZZ"
+                android:text="TEST"
                 android:id="@+id/BSDogName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,6 +40,7 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:text="TEST"
                 android:id="@+id/BSDogPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,9 +53,10 @@
                 android:id="@+id/BSDogPlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
                 android:layout_marginTop="240dp"
-                android:layout_marginStart="240dp"
-                android:padding="15dp"
+                android:layout_marginStart="200dp"
+                android:layout_marginEnd="15dp"
                 android:textSize="15sp"
                 android:textColor="@android:color/darker_gray"/>
 

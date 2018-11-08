@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -33,12 +34,12 @@ import com.squareup.picasso.Picasso;
 
 public class BuyOrSellMenu extends AppCompatActivity implements View.OnClickListener {
 
-    private CardView buySellCard;
+    private CardView BSCard;
     private RecyclerView recyclerBuySellMenu;
     private RecyclerView.LayoutManager layoutManager;
 
     private FirebaseRecyclerOptions<SaleDog> options;
-    private FirebaseRecyclerAdapter<SaleDog,BuySellViewHolder> adapter;
+    private FirebaseRecyclerAdapter adapter;
 
     private FirebaseDatabase Db;
     private DatabaseReference saleDog;
@@ -77,11 +78,8 @@ public class BuyOrSellMenu extends AppCompatActivity implements View.OnClickList
 
     private void loadBSM() {
 
-
-            Query query = saleDog;
-
             options = new FirebaseRecyclerOptions.Builder<SaleDog>()
-                    .setQuery(query,SaleDog.class)
+                    .setQuery(saleDog,SaleDog.class)
                     .build();
 
             adapter = new FirebaseRecyclerAdapter<SaleDog, BuySellViewHolder>(options) {
@@ -104,57 +102,23 @@ public class BuyOrSellMenu extends AppCompatActivity implements View.OnClickList
                 holder.BSDogPrice.setText(model.getPrice());
                 holder.BSDogPlace.setText(model.getSellerLocation());
 
+                Picasso.with(getBaseContext())
+                        .load(model.getSellDogImage())
+                        .into(holder.BSDogImage);
+
                 final SaleDog clickItem = model;
                 holder.setBuySellClickListener(new BuySellClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-
+                        //Intent i = new Intent(getApplicationContext(), BuyPage.class);
+                        //startActivity(i);
+                        //finish();
+                        Toast.makeText(BuyOrSellMenu.this, "Niceeee", Toast.LENGTH_SHORT).show();
                     }
                 });
 
             }
 
-            /*@Override
-            protected void populateViewHolder(final BuySellViewHolder viewHolder,
-                                              SaleDog model, final int position) {*/
-               /* if(model.getAvatarUrl()!=null && !TextUtils.isEmpty(model.getAvatarUrl())){
-                    Picasso.with(InviteActivity.this)
-                            .load(model.getAvatarUrl())
-                            .into(viewHolder.JSPhoto);
-                }*/
-
-               /* viewHolder.JSCheckBoxBtn.setOnCheckedChangeListener
-                        (new CompoundButton.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                if(isChecked){
-                                    ListUsers.put(adapter.getRef(position).getKey().toString(),"invite");
-                                }
-                                else{
-                                    ListUsers.remove(adapter.getRef(position).getKey().toString());
-                                }
-                            }
-                        });
-
-                //fill rating star
-                users.child(adapter.getRef(position).getKey().toString()).child("rating").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()){
-                            String rating = dataSnapshot.getValue().toString();
-                            int ratings = Integer.parseInt(rating);
-                            viewHolder.ratingJS.setRating((float) ratings);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-*/
-
-            //}
         };
         recyclerBuySellMenu.setAdapter(adapter);
         layoutManager = new LinearLayoutManager(getBaseContext());
@@ -165,5 +129,17 @@ public class BuyOrSellMenu extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         Intent i = new Intent(getApplicationContext(), BuyPage.class);
         startActivity(i);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }
