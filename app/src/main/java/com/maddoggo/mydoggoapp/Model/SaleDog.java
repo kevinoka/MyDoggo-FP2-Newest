@@ -1,18 +1,25 @@
 package com.maddoggo.mydoggoapp.Model;
 
 public class SaleDog {
-    private String dogName, price, sellerLocation, sellDogImage;
+    private String dogName, price, sellerLocation, sellDogImage, dogDesc, phoneNumber;
 
     public SaleDog() {
+        this.dogName = "";
+        this.price = "";
+        this.sellerLocation = "";
+        this.sellDogImage = "";
+        this.dogDesc = "";
+        this.phoneNumber = "";
     }
 
-
-    public SaleDog(String dogName, String price, String sellerLocation, String sellDogImage) {
+    public SaleDog(String dogName, String price, String sellerLocation, String sellDogImage, String dogDesc, String phoneNumber) {
 
         this.dogName = dogName;
         this.price = price;
         this.sellerLocation = sellerLocation;
         this.sellDogImage = sellDogImage;
+        this.dogDesc = dogDesc;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getDogName() {
@@ -45,6 +52,22 @@ public class SaleDog {
 
     public void setSellDogImage(String sellDogImage) {
         this.sellDogImage = sellDogImage;
+    }
+
+    public String getDogDesc() {
+        return dogDesc;
+    }
+
+    public void setDogDesc(String dogDesc) {
+        this.dogDesc = dogDesc;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
 }
