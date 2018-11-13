@@ -10,6 +10,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -76,11 +79,42 @@ public class SellPosting extends AppCompatActivity {
         //getCurrentInfo();
 
         imageView = findViewById(R.id.ImageSellPosting);
+
+        editPriceSellPosting.setText("Rp ");
+        Selection.setSelection(editPriceSellPosting.getText(), editPriceSellPosting.getText().length());
+
+
+        editPriceSellPosting.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(!s.toString().startsWith("Rp ")){
+                    editPriceSellPosting.setText("Rp ");
+                    Selection.setSelection(editPriceSellPosting.getText(), editPriceSellPosting.getText().length());
+
+                }
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
     }
 
     private void SaveSellDog() {
 
-        saleDog.child("SaleDogList").addValueEventListener(new ValueEventListener() {
+        saleDog.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long no = dataSnapshot.getChildrenCount();
@@ -116,7 +150,6 @@ public class SellPosting extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.mybutton) {
-            // do something here
             SaveSellDog();
             Intent i = new Intent(getApplicationContext(), BuyOrSellMenu.class);
             startActivity(i);
@@ -127,7 +160,6 @@ public class SellPosting extends AppCompatActivity {
     }
 
     public void imageClicked (View view){
-        //Toast.makeText(this, "Uploaded", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -142,7 +174,6 @@ public class SellPosting extends AppCompatActivity {
         if(requestCode == 9999 && resultCode == RESULT_OK && data != null && data.getData() != null){
             final Uri saveUri = data.getData();
             if(saveUri != null){
-                //ProgressBar progressBar = new ProgressBar(this); //coding belum lengkap kalo mau isi progress
                 final ProgressDialog progressDialog = new ProgressDialog(this);
                 progressDialog.setMessage("Uploading...");
                 progressDialog.show();
@@ -166,31 +197,6 @@ public class SellPosting extends AppCompatActivity {
                                                 .load(saleDogIn.getSellDogImage())
                                                 .into(imageView);
 
-                                       /* //Save image url to User user information table
-                                        Map<String, Object> avatarUpdate = new HashMap<>();
-                                        avatarUpdate.put("avatarUrl",uri.toString());
-
-                                        DatabaseReference userInformation = FirebaseDatabase.getInstance().getReference("Users");
-                                        userInformation.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                .updateChildren(avatarUpdate)
-                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        if(task.isSuccessful()){
-                                                            Toast.makeText(getBaseContext(), "Avatar was uploaded", Toast.LENGTH_SHORT).show();
-                                                            progressDialog.dismiss();
-                                                        }
-
-                                                        else
-                                                            Toast.makeText(getBaseContext(), "Upload error", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });*/
                                     }
                                 });
                             }

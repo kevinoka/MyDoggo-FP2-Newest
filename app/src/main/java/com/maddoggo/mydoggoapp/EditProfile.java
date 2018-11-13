@@ -8,6 +8,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -77,12 +80,36 @@ public class EditProfile extends AppCompatActivity {
 
         //editName.setSelection(editName.getText().length());
         editFirstName = findViewById(R.id.EditFirstNameProfile);
+        Selection.setSelection(editFirstName.getText(), editFirstName.getText().length());
         editLastName = findViewById(R.id.EditLastNameProfile);
         editEmail = findViewById(R.id.EditEmailProfile);
         editPhone = findViewById(R.id.EditPhoneProfile);
         editAddress = findViewById(R.id.EditAddressProfile);
         editBirthday = findViewById(R.id.EditBirthdayProfile);
         getCurrentInfo();
+
+
+        editFirstName.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                    Selection.setSelection(editFirstName.getText(), editFirstName.getText().length());
+                }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
 
         imageView = findViewById(R.id.imageViewProfile);
 
@@ -168,7 +195,6 @@ public class EditProfile extends AppCompatActivity {
         if(requestCode == 9999 && resultCode == RESULT_OK && data != null && data.getData() != null){
             final Uri saveUri = data.getData();
             if(saveUri != null){
-                //ProgressBar progressBar = new ProgressBar(this); //coding belum lengkap kalo mau isi progress
                 final ProgressDialog progressDialog = new ProgressDialog(this);
                 progressDialog.setMessage("Uploading...");
                 progressDialog.show();
