@@ -133,5 +133,8 @@
     <string name="doggopedia_desc">Doggopedia Icon</string>
     <string name="map_desc">Map Icon</string>
     <string name="buy_sell_desc">Buy or Sell Icon</string>
+    <string name="dog_image">Dog Image</string>
+    <string name="name_of_your_dog">Name of your dog</string>
+    <string name="uploaded_image">Uploaded image</string>
 
 </resources>
