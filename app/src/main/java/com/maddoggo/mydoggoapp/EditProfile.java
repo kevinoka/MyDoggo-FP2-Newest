@@ -78,14 +78,19 @@ public class EditProfile extends AppCompatActivity {
         storageRef = storage.getReference();
 
 
-        //editName.setSelection(editName.getText().length());
         editFirstName = findViewById(R.id.EditFirstNameProfile);
         Selection.setSelection(editFirstName.getText(), editFirstName.getText().length());
         editLastName = findViewById(R.id.EditLastNameProfile);
+        Selection.setSelection(editLastName.getText(), editLastName.getText().length());
         editEmail = findViewById(R.id.EditEmailProfile);
+        Selection.setSelection(editEmail.getText(), editEmail.getText().length());
         editPhone = findViewById(R.id.EditPhoneProfile);
+        Selection.setSelection(editPhone.getText(), editPhone.getText().length());
         editAddress = findViewById(R.id.EditAddressProfile);
+        Selection.setSelection(editAddress.getText(), editAddress.getText().length());
         editBirthday = findViewById(R.id.EditBirthdayProfile);
+        Selection.setSelection(editBirthday.getText(), editBirthday.getText().length());
+
         getCurrentInfo();
 
 
@@ -93,7 +98,7 @@ public class EditProfile extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO Auto-generated method stub
+                /* TODO Auto-generated method stub */
 
             }
 
@@ -110,6 +115,117 @@ public class EditProfile extends AppCompatActivity {
             }
 
         });
+
+        editLastName.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Selection.setSelection(editLastName.getText(), editLastName.getText().length());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
+
+        editEmail.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Selection.setSelection(editEmail.getText(), editEmail.getText().length());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
+
+        editPhone.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Selection.setSelection(editPhone.getText(), editPhone.getText().length());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
+
+        editAddress.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Selection.setSelection(editAddress.getText(), editAddress.getText().length());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
+
+        editBirthday.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Selection.setSelection(editBirthday.getText(), editBirthday.getText().length());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
+
 
         imageView = findViewById(R.id.imageViewProfile);
 

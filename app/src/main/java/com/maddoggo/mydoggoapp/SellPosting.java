@@ -42,6 +42,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import static com.maddoggo.mydoggoapp.R.string.rupiah_sell_posting_class;
+
 public class SellPosting extends AppCompatActivity {
 
     FirebaseStorage storage;
@@ -76,11 +78,10 @@ public class SellPosting extends AppCompatActivity {
         editLocationSellPosting = findViewById(R.id.EditLocationSellPosting);
         editDescSellPosting = findViewById(R.id.EditDescSellPosting);
         editPhoneSellPosting = findViewById(R.id.EditPhoneSellPosting);
-        //getCurrentInfo();
 
         imageView = findViewById(R.id.ImageSellPosting);
 
-        editPriceSellPosting.setText("Rp ");
+        editPriceSellPosting.setText(rupiah_sell_posting_class);
         Selection.setSelection(editPriceSellPosting.getText(), editPriceSellPosting.getText().length());
 
 

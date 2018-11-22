@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
 
                         final ProgressDialog mDialog = new ProgressDialog(MainActivity.this);
                         mDialog.setMessage("Logging in...");
+                        mDialog.setCancelable(false);
+                        mDialog.setCanceledOnTouchOutside(false);
                         mDialog.show();
                         dialogInterface.dismiss();
 
@@ -148,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
                 dialogInterface.dismiss();
             }
         });
-
 
 
         dialog.show();
