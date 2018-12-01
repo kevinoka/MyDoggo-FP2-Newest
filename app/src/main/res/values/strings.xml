@@ -143,4 +143,7 @@
     <string name="characteristics_LF">Characteristics</string>
     <string name="rupiah_sell_posting_class">Rp</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
