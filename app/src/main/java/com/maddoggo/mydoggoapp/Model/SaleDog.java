@@ -1,6 +1,8 @@
 package com.maddoggo.mydoggoapp.Model;
 
-public class SaleDog {
+import java.io.Serializable;
+
+public class SaleDog implements Serializable {
     private String dogName, price, sellerLocation, sellDogImage, dogDesc, phoneNumber;
 
     public SaleDog() {

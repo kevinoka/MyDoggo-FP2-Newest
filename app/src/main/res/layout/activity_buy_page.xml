@@ -19,25 +19,26 @@
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleTextAppearance="@android:color/transparent"
             android:fitsSystemWindows="true" >
-            
+
             <ImageView
+                android:id="@+id/BuyDogImage"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 app:layout_collapseMode="parallax"
                 android:scaleType="centerCrop"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/dog_pic1"
-                 />
+                />
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/toolbarBuyPage"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                android:title="@string/dog_sell_title1"
+                app:title="@string/title_activity_buy_page"
                 app:layout_collapseMode="pin" />
 
-            
+
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
@@ -62,10 +63,11 @@
                 >
 
                 <TextView
+                    android:id="@+id/BuyDogPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rp 2.000.000"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:layout_marginTop="12dp"
                     android:textSize="25sp"
@@ -74,6 +76,7 @@
 
 
                 <TextView
+                    android:id="@+id/BuyDogDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dog_sell_description1"
@@ -84,6 +87,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/BuyDogLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Available since: 1 January 2018"
@@ -94,16 +98,7 @@
                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Condition: Good"
-                    android:lineSpacingMultiplier="1.5"
-                    android:layout_marginTop="12dp"
-                    android:textSize="13sp"
-                    android:padding="12dp"
-                    />
-
-                <TextView
+                    android:id="@+id/BuyDogPhoneNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phone Number: (0361) 111 111"
