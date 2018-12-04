@@ -1,96 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".FavoriteAdoption"
-    tools:showIn="@layout/activity_favorite_adoption">
+    android:layout_marginTop="60dp"
+    android:gravity="center"
+    tools:context=".FavoriteAdoption">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your favorite"
-        android:textSize="25sp"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="15dp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recFavoriteAdoptionList"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_gravity=""
+        android:scrollbars="vertical">
 
-    <android.support.v7.widget.CardView
-        app:cardCornerRadius="4dp"
-        android:layout_width="350dp"
-        android:layout_height="380dp"
-        android:layout_gravity="center_horizontal"
-        app:cardElevation="4dp"
-        android:foreground="?android:attr/selectableItemBackground">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/AdoptDogPict"
-                android:contentDescription="Dog picture"
-                android:layout_marginBottom="170dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:src="@drawable/dog1" />
-
-            <TextView
-                android:id="@+id/AdoptDogName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="195dp"
-                android:padding="15dp"
-                android:text="Brown Dog"
-                android:textSize="25sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/AdoptDogType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="230dp"
-                android:padding="15dp"
-                android:text="Pitbull"
-                android:textSize="16sp"
-                android:textColor="@android:color/black"/>
-
-            <TextView
-                android:id="@+id/AdoptDogAge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="252dp"
-                android:padding="15dp"
-                android:text="4 years old"
-                android:textSize="16sp"
-                android:textColor="@android:color/black"/>
-
-            <TextView
-                android:id="@+id/AdoptDogDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="275dp"
-                android:padding="15dp"
-                android:text="Brief Description"
-                android:textSize="16sp"
-                android:textColor="@android:color/black"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="15dp"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:text="Adopt now"/>
-        </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
-
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

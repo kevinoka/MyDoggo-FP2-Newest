@@ -137,6 +137,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.maddoggo.mydoggoapp.BuyOrSellMenu" />
         </activity>
+
+        <activity
+            android:name=".LostPage"
+            android:label="@string/title_activity_lost_page"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maddoggo.mydoggoapp.LostFoundMenu" />
+        </activity>
+
         <activity
             android:name=".MyProfile"
             android:label="@string/title_activity_my_profile"

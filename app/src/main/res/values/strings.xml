@@ -108,6 +108,7 @@
         <item>Maltipoo</item>
     </string-array>
     <string name="title_activity_buy_page">White Brown Dog</string>
+    <string name="title_activity_lost_page">Lost Page</string>
     <string name="title_activity_my_profile">My Profile</string>
     <string name="title_activity_edit_profile">Edit Profile</string>
     <string name="title_activity_favorite_adoption">Adoption</string>
@@ -142,6 +143,7 @@
     <string name="phone_number_LF">Phone number</string>
     <string name="characteristics_LF">Characteristics</string>
     <string name="rupiah_sell_posting_class">Rp</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

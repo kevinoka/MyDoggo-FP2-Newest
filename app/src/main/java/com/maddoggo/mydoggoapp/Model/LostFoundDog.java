@@ -1,6 +1,8 @@
 package com.maddoggo.mydoggoapp.Model;
 
-public class LostFoundDog {
+import java.io.Serializable;
+
+public class LostFoundDog implements Serializable {
     private String dogType, dogChara, dogLastSeen, dogPict, dogName;
 
     public LostFoundDog(){

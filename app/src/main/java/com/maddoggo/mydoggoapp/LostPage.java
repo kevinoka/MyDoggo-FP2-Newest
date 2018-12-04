@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.internal.NavigationMenu;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -12,33 +11,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.maddoggo.mydoggoapp.Model.SaleDog;
+import com.maddoggo.mydoggoapp.Model.LostFoundDog;
 import com.squareup.picasso.Picasso;
 
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 
-public class BuyPage extends AppCompatActivity {
+public class LostPage extends AppCompatActivity {
 
-    private SaleDog saleDog;
-    private ImageView mBuyDogImage;
-    private TextView mBuyDogPrice, mBuyDogDesc, mBuyDogLocation, mBuyDogPhoneNumber;
+    private LostFoundDog LFDog;
+    private ImageView mLostDogImage;
+    private TextView mLostDogType, mLostDogChara, mLostDogLastLoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buy_page);
-        Toolbar toolbar = findViewById(R.id.toolbarBuyPage);
+        setContentView(R.layout.activity_lost_page);
+        Toolbar toolbar = findViewById(R.id.toolbarLostPage);
         setSupportActionBar(toolbar);
         if(getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mBuyDogImage = findViewById(R.id.BuyDogImage);
-        mBuyDogPrice = findViewById(R.id.BuyDogPrice);
-        mBuyDogDesc = findViewById(R.id.BuyDogDesc);
-        mBuyDogLocation = findViewById(R.id.BuyDogLocation);
-        mBuyDogPhoneNumber = findViewById(R.id.BuyDogPhoneNumber);
+        mLostDogImage = findViewById(R.id.LostDogImage);
+        mLostDogType = findViewById(R.id.LostDogType);
+        mLostDogChara = findViewById(R.id.LostDogChara);
+        mLostDogLastLoc = findViewById(R.id.LostDogLastLoc);
+        //Belum ada di database
+        //mLostDogPhoneNumber = findViewById(R.id.LostDogPhoneNumber);
 
 
         FabSpeedDial fabSpeedDial = findViewById(R.id.fabSpeedDial);
@@ -58,7 +56,7 @@ public class BuyPage extends AppCompatActivity {
                     i.setData(Uri.parse(url));
                     startActivity(i);
                 }
-                Toast.makeText(BuyPage.this, ""+menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LostPage.this, ""+menuItem.getTitle(), Toast.LENGTH_SHORT).show();
                 return true;
             }
 
@@ -69,16 +67,15 @@ public class BuyPage extends AppCompatActivity {
         });
 
         Intent i = getIntent();
-        SaleDog done = (SaleDog) i.getSerializableExtra("SaleDogClass");
-        //saleDog = getIntent().getSerializableExtra("SaleDogClass");
+        LostFoundDog done = (LostFoundDog) i.getSerializableExtra("LostFoundDogClass");
         toolbar.setTitle(done.getDogName());
         Picasso.with(getBaseContext())
-                .load(done.getSellDogImage())
-                .into(mBuyDogImage);
-        mBuyDogPrice.setText("Rp " +done.getPrice());
-        mBuyDogDesc.setText(done.getDogDesc());
-        mBuyDogLocation.setText("Location: " + done.getSellerLocation());
-        mBuyDogPhoneNumber.setText("Phone Number: " + done.getPhoneNumber());
+                .load(done.getDogPict())
+                .into(mLostDogImage);
+        mLostDogType.setText(done.getDogType());
+        mLostDogChara.setText(done.getDogChara());
+        mLostDogLastLoc.setText("Last known location: " + done.getDogLastSeen());
+        //mLostDogPhoneNumber.setText("Phone Number: " + done.getP());
     }
 
 }

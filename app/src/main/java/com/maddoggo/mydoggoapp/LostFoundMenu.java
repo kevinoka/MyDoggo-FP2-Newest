@@ -97,13 +97,21 @@ public class LostFoundMenu extends AppCompatActivity {
                         .into(holder.LFDogPict);
 
                 final LostFoundDog clickItem = model;
+
+                holder.LFCard.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(view.getContext(), LostPage.class);
+                        i.putExtra("LostFoundDogClass", clickItem);
+                        startActivity(i);
+                        //Toast.makeText(BuyOrSellMenu.this, "Niceeee", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 holder.setLostFoundClickListener(new LostFoundClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        //Intent i = new Intent(getApplicationContext(), BuyPage.class);
-                        //startActivity(i);
-                        //finish();
-                        Toast.makeText(LostFoundMenu.this, "Niceeee", Toast.LENGTH_SHORT).show();
+
                     }
                 });
 
@@ -116,7 +124,8 @@ public class LostFoundMenu extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        //Intent i = new Intent(getApplicationContext(), )
+        Intent i = new Intent(getApplicationContext(), LostPage.class);
+        startActivity(i);
     }
 
     @Override
