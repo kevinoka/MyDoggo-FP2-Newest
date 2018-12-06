@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.maddoggo.mydoggoapp.Interface.BuySellClickListener;
 import com.maddoggo.mydoggoapp.Interface.FavoriteAdoptionClickListener;
 import com.maddoggo.mydoggoapp.R;
 
@@ -31,7 +30,7 @@ public class FavoriteAdoptionViewHolder extends RecyclerView.ViewHolder implemen
 
     }
 
-    public void favoriteAdoptionClickListener(FavoriteAdoptionClickListener favoriteAdoptionClickListener){
+    public void setFavoriteAdoptionClickListener(FavoriteAdoptionClickListener favoriteAdoptionClickListener){
         this.favoriteAdoptionClickListener = favoriteAdoptionClickListener;
     }
 

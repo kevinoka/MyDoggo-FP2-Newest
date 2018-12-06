@@ -6,9 +6,12 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,19 +22,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.maddoggo.mydoggoapp.Interface.FavoriteAdoptionClickListener;
 import com.maddoggo.mydoggoapp.Model.Adoption;
-import com.maddoggo.mydoggoapp.Model.SaleDog;
-import com.maddoggo.mydoggoapp.Model.User;
+import com.maddoggo.mydoggoapp.Model.AdoptionFav;
+import com.maddoggo.mydoggoapp.ViewHolder.FavoriteAdoptionViewHolder;
 import com.squareup.picasso.Picasso;
 
-public class FavoriteAdoption extends AppCompatActivity /*implements View.OnClickListener*/ {
+public class FavoriteAdoption extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView mDogPict;
-    private TextView mDogName, mDogType, mDogDesc, mDogAge;
     private RecyclerView recyclerFavoriteAdoption;
     private RecyclerView.LayoutManager layoutManager;
 
-    private FirebaseRecyclerOptions<SaleDog> options;
+    private FirebaseRecyclerOptions<AdoptionFav> options;
     private FirebaseRecyclerAdapter adapter;
 
     private FirebaseDatabase Db;
@@ -51,10 +53,68 @@ public class FavoriteAdoption extends AppCompatActivity /*implements View.OnClic
 
         recyclerFavoriteAdoption = findViewById(R.id.recFavoriteAdoptionList);
 
-        //loadFavAdopt();
+        loadFavAdopt();
+
+    }
+
+    private void loadFavAdopt() {
+
+        options = new FirebaseRecyclerOptions.Builder<AdoptionFav>()
+                .setQuery(fav,AdoptionFav.class)
+                .build();
+
+        adapter = new FirebaseRecyclerAdapter<AdoptionFav, FavoriteAdoptionViewHolder>(options) {
 
 
-        mDogName = findViewById(R.id.AdoptDogName);
+
+            @NonNull
+            @Override
+            public FavoriteAdoptionViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View view = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.favorite_adoption_list,viewGroup,false);
+
+                return new FavoriteAdoptionViewHolder(view);
+
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull FavoriteAdoptionViewHolder holder, int position, @NonNull AdoptionFav model) {
+                holder.AdoptDogName.setText(model.getDogName());
+                holder.AdoptDogType.setText(model.getDogType());
+                holder.AdoptDogAge.setText(model.getDogAge());
+                holder.AdoptDogDesc.setText(model.getDogDesc());
+
+                Picasso.with(getBaseContext())
+                        .load(model.getDogPict())
+                        .into(holder.AdoptDogPict);
+
+                final AdoptionFav clickItem = model;
+
+                holder.FavAdoptionCard.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(view.getContext(), FavoriteAdoption.class);
+                        i.putExtra("AdoptionFavClass", clickItem);
+                        startActivity(i);
+                    }
+                });
+
+                holder.setFavoriteAdoptionClickListener(new FavoriteAdoptionClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+
+                    }
+                });
+
+            }
+
+        };
+        recyclerFavoriteAdoption.setAdapter(adapter);
+        layoutManager = new LinearLayoutManager(getBaseContext());
+        recyclerFavoriteAdoption.setLayoutManager(layoutManager);
+
+
+        /*mDogName = findViewById(R.id.AdoptDogName);
         mDogType = findViewById(R.id.AdoptDogType);
         mDogDesc = findViewById(R.id.AdoptDogDesc);
         mDogAge = findViewById(R.id.AdoptDogAge);
@@ -81,15 +141,15 @@ public class FavoriteAdoption extends AppCompatActivity /*implements View.OnClic
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
 
     }
 
-    /*//@Override
+    @Override
     public void onClick(View v) {
-        *//*Intent i = new Intent(getApplicationContext(), FavoriteAdoption.class);
-        startActivity(i);*//*
+        Intent i = new Intent(getApplicationContext(), FavoriteAdoption.class);
+        startActivity(i);
     }
 
     @Override
@@ -102,6 +162,6 @@ public class FavoriteAdoption extends AppCompatActivity /*implements View.OnClic
     public void onStop() {
         super.onStop();
         adapter.stopListening();
-    }*/
+    }
 
 }
