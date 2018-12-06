@@ -92,6 +92,7 @@ public class BuyOrSellMenu extends AppCompatActivity implements View.OnClickList
 
             @Override
             protected void onBindViewHolder(@NonNull BuySellViewHolder holder, int position, @NonNull SaleDog model) {
+                //holder.BSUserName.setText(model.getOwner());
                 holder.BSDogName.setText(model.getDogName());
                 holder.BSDogPrice.setText(model.getPrice());
                 holder.BSDogPlace.setText(model.getSellerLocation());

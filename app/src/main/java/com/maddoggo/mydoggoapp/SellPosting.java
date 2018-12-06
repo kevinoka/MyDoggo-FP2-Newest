@@ -51,8 +51,11 @@ public class SellPosting extends AppCompatActivity {
 
     ImageView imageView;
 
+    private FirebaseAuth mAuth;
     private FirebaseDatabase Db;
     private DatabaseReference saleDog;
+    private DatabaseReference saleDogByUser;
+
     private SaleDog saleDogIn;
 
     private EditText editNameSellPosting, editPriceSellPosting, editLocationSellPosting, editDescSellPosting, editPhoneSellPosting;
@@ -68,8 +71,11 @@ public class SellPosting extends AppCompatActivity {
         //Init Storage --> For the dog picture
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
+
+        mAuth = FirebaseAuth.getInstance();
         Db = FirebaseDatabase.getInstance();
         saleDog = Db.getReference("SaleDogList");
+        saleDogByUser = Db.getReference("SaleDogUserList");
 
         saleDogIn = new SaleDog() ;
 
@@ -127,8 +133,11 @@ public class SellPosting extends AppCompatActivity {
                 saleDogIn.setDogDesc(editDescSellPosting.getText().toString());
                 saleDogIn.setPhoneNumber(editPhoneSellPosting.getText().toString());
 
+                saleDogIn.setOwner(mAuth.getCurrentUser().getUid());
+
                 saleDog.child("SaleDog"+no).setValue(saleDogIn);
 
+                saleDogByUser.child(mAuth.getCurrentUser().getUid()).child("SaleDog"+no).setValue(true);
             }
 
             @Override
@@ -136,7 +145,12 @@ public class SellPosting extends AppCompatActivity {
             }
         });
 
+
     }
+
+
+
+
 
     // create an action bar button
     @Override

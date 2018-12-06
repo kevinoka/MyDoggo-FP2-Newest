@@ -10,7 +10,7 @@ import com.maddoggo.mydoggoapp.Interface.BuySellClickListener;
 import com.maddoggo.mydoggoapp.R;
 
 public class BuySellViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    public TextView BSDogName, BSDogPrice, BSDogPlace;
+    public TextView BSUserName, BSDogName, BSDogPrice, BSDogPlace;
     public ImageView BSDogImage;
     public CardView BSCard;
 
@@ -19,6 +19,7 @@ public class BuySellViewHolder extends RecyclerView.ViewHolder implements View.O
     public BuySellViewHolder(View itemView){
         super(itemView);
 
+        //BSUserName = itemView.findViewById(R.id.BSUserName);
         BSDogName = itemView.findViewById(R.id.BSDogName);
         BSDogPrice = itemView.findViewById(R.id.BSDogPrice);
         BSDogPlace = itemView.findViewById(R.id.BSDogPlace);

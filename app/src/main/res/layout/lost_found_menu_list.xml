@@ -25,9 +25,10 @@
             <ImageView
                 android:contentDescription="dog image"
                 android:id="@+id/LFDogPict"
-                android:layout_marginBottom="100dp"
+                android:layout_marginBottom="111dp"
+                android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent" />
 
             <TextView
                 android:text="TEST"
@@ -62,9 +63,9 @@
             <TextView
                 android:text="Test"
                 android:id="@+id/LFDogLast"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="textEnd"
+                android:gravity="end"
                 android:layout_marginTop="240dp"
                 android:layout_marginStart="200dp"
                 android:layout_marginEnd="15dp"

@@ -3,9 +3,10 @@ package com.maddoggo.mydoggoapp.Model;
 import java.io.Serializable;
 
 public class SaleDog implements Serializable {
-    private String dogName, price, sellerLocation, sellDogImage, dogDesc, phoneNumber;
+    private String owner, dogName, price, sellerLocation, sellDogImage, dogDesc, phoneNumber;
 
     public SaleDog() {
+        this.owner = "";
         this.dogName = "";
         this.price = "";
         this.sellerLocation = "";
@@ -14,14 +15,23 @@ public class SaleDog implements Serializable {
         this.phoneNumber = "";
     }
 
-    public SaleDog(String dogName, String price, String sellerLocation, String sellDogImage, String dogDesc, String phoneNumber) {
+    public SaleDog(String owner, String dogName, String price, String sellerLocation, String sellDogImage, String dogDesc, String phoneNumber) {
 
+        this.owner = owner;
         this.dogName = dogName;
         this.price = price;
         this.sellerLocation = sellerLocation;
         this.sellDogImage = sellDogImage;
         this.dogDesc = dogDesc;
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getDogName() {

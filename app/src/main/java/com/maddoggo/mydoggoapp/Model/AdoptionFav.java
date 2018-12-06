@@ -1,6 +1,8 @@
 package com.maddoggo.mydoggoapp.Model;
 
-public class AdoptionFav {
+import java.io.Serializable;
+
+public class AdoptionFav implements Serializable {
     private String dogName, dogDesc, dogAge, dogType, dogPict;
 
     public AdoptionFav(String dogName, String dogDesc, String dogAge, String dogType, String dogPict) {
