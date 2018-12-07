@@ -148,7 +148,6 @@ public class SellPosting extends AppCompatActivity {
 
     }
 
-
     // create an action bar button
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -26,8 +26,9 @@
                 android:contentDescription="@string/dog_image"
                 android:id="@+id/DPImage"
                 android:layout_marginBottom="200dp"
+                android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:src="@drawable/dog_pic1" />
 
             <TextView

@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,8 +39,10 @@ public class LastFoundPosting extends AppCompatActivity {
 
     ImageView imageView;
 
+    private FirebaseAuth mAuth;
     private FirebaseDatabase Db;
     private DatabaseReference lostFoundDog;
+    private DatabaseReference lostFoundDogByUser;
     private LostFoundDog lostFoundDogIn;
 
     private EditText editLFDogName, editLFDogTypeLF, editLFDogLastSeen, editLFChara, editLFPhone;
@@ -54,8 +57,11 @@ public class LastFoundPosting extends AppCompatActivity {
         //Init Storage --> For the dog picture
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
+
+        mAuth = FirebaseAuth.getInstance();
         Db = FirebaseDatabase.getInstance();
         lostFoundDog = Db.getReference("LostFoundList");
+        lostFoundDogByUser = Db.getReference("LostFoundUserList");
 
         lostFoundDogIn = new LostFoundDog() ;
 
@@ -83,7 +89,11 @@ public class LastFoundPosting extends AppCompatActivity {
                 lostFoundDogIn.setDogChara(editLFChara.getText().toString());
                 //lostFoundDogIn.setPhoneNumber(editLFPhone.getText().toString());
 
+                lostFoundDogIn.setOwner(mAuth.getCurrentUser().getUid());
+
                 lostFoundDog.child("LFDog"+no).setValue(lostFoundDogIn);
+
+                lostFoundDogByUser.child(mAuth.getCurrentUser().getUid()).child("LFDog"+no).setValue(true);
 
             }
 
