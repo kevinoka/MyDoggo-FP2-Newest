@@ -3,17 +3,14 @@ package com.maddoggo.mydoggoapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -21,14 +18,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.maddoggo.mydoggoapp.Interface.BuySellClickListener;
 import com.maddoggo.mydoggoapp.Model.SaleDog;
 import com.maddoggo.mydoggoapp.ViewHolder.BuySellViewHolder;
 import com.squareup.picasso.Picasso;
 
-public class BuyOrSellMenu extends AppCompatActivity implements View.OnClickListener {
+import java.util.Objects;
 
+public class UserSellPostList extends AppCompatActivity implements View.OnClickListener {
     private CardView BSCard;
     private RecyclerView recyclerBuySellMenu;
     private RecyclerView.LayoutManager layoutManager;
@@ -36,8 +33,10 @@ public class BuyOrSellMenu extends AppCompatActivity implements View.OnClickList
     private FirebaseRecyclerOptions<SaleDog> options;
     private FirebaseRecyclerAdapter adapter;
 
+    private FirebaseAuth mAuth;
     private FirebaseDatabase Db;
     private DatabaseReference saleDog;
+    private DatabaseReference saleDogByUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,32 +47,30 @@ public class BuyOrSellMenu extends AppCompatActivity implements View.OnClickList
         if(getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), SellPosting.class);
-                startActivity(i);
-            }
-        });
-
+        mAuth = FirebaseAuth.getInstance();
         Db = FirebaseDatabase.getInstance();
         saleDog = Db.getReference("SaleDogList");
+        saleDogByUser = Db.getReference("SaleDogUserList");
 
         recyclerBuySellMenu = findViewById(R.id.recBuySellMenuList);
 
 
-        loadBSM();
+        loadBSMPerUser();
 
     }
 
-    private void loadBSM() {
+    private void loadBSMPerUser() {
 
-            options = new FirebaseRecyclerOptions.Builder<SaleDog>()
-                    .setQuery(saleDog,SaleDog.class)
-                    .build();
+        //saleDogUserList --> nama database refrence kyk saleDog tapi arahnya ke table saleDogUserList di database
+        Query query = saleDogByUser.child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid().toString());
 
-            adapter = new FirebaseRecyclerAdapter<SaleDog, BuySellViewHolder>(options) {
+        //ininya juga beda, cuma berubah jd setIndexedQuery
+        options = new FirebaseRecyclerOptions.Builder<SaleDog>()
+                .setIndexedQuery(query,saleDog,SaleDog.class)
+                .build();
+
+        adapter = new FirebaseRecyclerAdapter<SaleDog, BuySellViewHolder>(options) {
+
 
 
             @NonNull
@@ -88,7 +85,6 @@ public class BuyOrSellMenu extends AppCompatActivity implements View.OnClickList
 
             @Override
             protected void onBindViewHolder(@NonNull BuySellViewHolder holder, int position, @NonNull SaleDog model) {
-                //holder.BSUserName.setText(model.getOwner());
                 holder.BSDogName.setText(model.getDogName());
                 holder.BSDogPrice.setText(model.getPrice());
                 holder.BSDogPlace.setText(model.getSellerLocation());
@@ -105,7 +101,6 @@ public class BuyOrSellMenu extends AppCompatActivity implements View.OnClickList
                         Intent i = new Intent(view.getContext(), BuyPage.class);
                         i.putExtra("SaleDogClass", clickItem);
                         startActivity(i);
-                        //Toast.makeText(BuyOrSellMenu.this, "Nice", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -142,3 +137,4 @@ public class BuyOrSellMenu extends AppCompatActivity implements View.OnClickList
         adapter.stopListening();
     }
 }
+

@@ -180,6 +180,9 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             //Logout function
             logOut();
+        } else if (id == R.id.nav_sell_post_list) {
+            i = new Intent(this, UserSellPostList.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

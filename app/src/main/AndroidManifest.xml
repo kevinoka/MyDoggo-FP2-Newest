@@ -180,6 +180,10 @@
             android:name=".ConsultationResult"
             android:label="@string/title_activity_consultation_result"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UserSellPostList"
+            android:label="@string/title_activity_user_sell_post_list"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
