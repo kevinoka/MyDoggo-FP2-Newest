@@ -58,7 +58,17 @@ public class BuyPage extends AppCompatActivity {
                     i.setData(Uri.parse(url));
                     startActivity(i);
                 }
-                Toast.makeText(BuyPage.this, ""+menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                else if (id == R.id.action_fab_dialpad) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:+6282146515988"));
+                    startActivity(intent);
+                }
+                else if (id == R.id.action_fab_message) {
+                    Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                    sendIntent.setData(Uri.parse("sms:+6282146515988"));
+                    startActivity(sendIntent);
+                }
+                //Toast.makeText(BuyPage.this, ""+menuItem.getTitle(), Toast.LENGTH_SHORT).show();
                 return true;
             }
 

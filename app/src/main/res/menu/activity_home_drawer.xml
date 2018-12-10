@@ -11,13 +11,21 @@
             android:icon="@drawable/ic_account_box_black_24dp"
             android:title="My Profile" />
         <item
-            android:id="@+id/nav_sell_post_list"
+            android:id="@+id/nav_my_post"
             android:icon="@drawable/ic_pets_black_24dp"
-            android:title="My Sell Post" />
+            android:title="My Post" />
+
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
             android:title="Logout" />
+
     </group>
 
 </menu>

@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,12 +41,23 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
     private DatabaseReference adoption;
     private DatabaseReference fav;
 
+    //Button adoptNowButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_adoption);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        /*adoptNowButton = findViewById(R.id.AdoptNowButton);
+        adoptNowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), AdoptNow.class);
+                startActivity(i);
+            }
+        });*/
 
         Db = FirebaseDatabase.getInstance();
         adoption = Db.getReference("Adoption");

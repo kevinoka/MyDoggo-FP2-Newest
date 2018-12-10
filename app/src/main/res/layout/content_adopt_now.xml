@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".AdoptNow"
+    tools:showIn="@layout/activity_adopt_now">
+
+    <ImageView
+        android:id="@+id/AdoptNowImage"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_collapseMode="parallax"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/dog_pic1"
+        />
+
+    <TextView
+        android:id="@+id/AdoptNowDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dog_sell_description1"
+        android:lineSpacingMultiplier="1.5"
+        android:layout_marginTop="250dp"
+        android:textSize="15sp"
+        android:padding="12dp"
+        />
+
+    <TextView
+        android:id="@+id/AdoptNowLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location: Dog Shelter"
+        android:lineSpacingMultiplier="1.5"
+        android:layout_marginTop="400dp"
+        android:textSize="15sp"
+        android:padding="12dp"
+        />
+
+    <TextView
+        android:id="@+id/AdoptNowPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone Number: (0361) 123 456"
+        android:lineSpacingMultiplier="1.5"
+        android:layout_marginTop="440dp"
+        android:textSize="15sp"
+        android:padding="12dp"
+        />
+
+</RelativeLayout>

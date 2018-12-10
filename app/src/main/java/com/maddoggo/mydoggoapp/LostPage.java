@@ -55,8 +55,17 @@ public class LostPage extends AppCompatActivity {
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));
                     startActivity(i);
+                }else if (id == R.id.action_fab_dialpad) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:+6282146515988"));
+                    startActivity(intent);
                 }
-                Toast.makeText(LostPage.this, ""+menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                else if (id == R.id.action_fab_message) {
+                    Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                    sendIntent.setData(Uri.parse("sms:+6282146515988"));
+                    startActivity(sendIntent);
+                }
+                //Toast.makeText(LostPage.this, ""+menuItem.getTitle(), Toast.LENGTH_SHORT).show();
                 return true;
             }
 

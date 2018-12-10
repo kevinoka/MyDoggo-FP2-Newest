@@ -51,7 +51,7 @@ public class Home extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        /*getSupportActionBar().setLogo(R.drawable.mydoggo_logo_text);
+        /*getSupportActionBar().setLogo(R.drawable.mydoggo_text);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);*/
 
@@ -177,17 +177,19 @@ public class Home extends AppCompatActivity
             //Profile function
             i = new Intent(this, MyProfile.class);
             startActivity(i);
+            item.setChecked(true);
         } else if (id == R.id.nav_logout) {
             //Logout function
             logOut();
-        } else if (id == R.id.nav_sell_post_list) {
-            i = new Intent(this, UserSellPostList.class);
+        }
+        else if (id == R.id.nav_my_post) {
+            i = new Intent(this, MyPost.class);
             startActivity(i);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+        return false;
     }
 
     private void logOut() {
@@ -216,7 +218,5 @@ public class Home extends AppCompatActivity
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-
-        }
+    }
 }

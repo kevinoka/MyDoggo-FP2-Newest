@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -15,7 +16,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -24,8 +25,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:icon"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:icon">
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -35,15 +36,14 @@
 
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/SplashTheme"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -137,7 +137,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.maddoggo.mydoggoapp.BuyOrSellMenu" />
         </activity>
-
         <activity
             android:name=".LostPage"
             android:label="@string/title_activity_lost_page"
@@ -146,7 +145,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.maddoggo.mydoggoapp.LostFoundMenu" />
         </activity>
-
         <activity
             android:name=".MyProfile"
             android:label="@string/title_activity_my_profile"
@@ -163,15 +161,27 @@
         <activity
             android:name=".FavoriteAdoption"
             android:label="@string/title_activity_favorite_adoption"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maddoggo.mydoggoapp.AdoptionMenu" />
+        </activity>
         <activity
             android:name=".SellPosting"
             android:label="@string/title_activity_sell_posting"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maddoggo.mydoggoapp.BuyOrSellMenu" />
+        </activity>
         <activity
             android:name=".LastFoundPosting"
             android:label="@string/title_activity_last_found_posting"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maddoggo.mydoggoapp.LostFoundMenu" />
+        </activity>
         <activity
             android:name=".BreedingResult"
             android:label="@string/title_activity_breeding_result"
@@ -181,9 +191,17 @@
             android:label="@string/title_activity_consultation_result"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".UserSellPostList"
-            android:label="@string/title_activity_user_sell_post_list"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".MyPost"
+            android:label="@string/title_activity_my_post"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maddoggo.mydoggoapp.Home" />
+        </activity>
+        <activity
+            android:name=".AdoptNow"
+            android:label="@string/title_activity_adopt_now"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@
         android:right="10dp"
         android:id="@+id/SaveButtonEditProfile"
         android:title="SAVE"
+        android:iconTint="@color/colorAccent"
         app:showAsAction="always"
         />
 </menu>
