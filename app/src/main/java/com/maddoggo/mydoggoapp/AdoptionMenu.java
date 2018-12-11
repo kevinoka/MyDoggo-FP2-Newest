@@ -64,7 +64,7 @@ public class AdoptionMenu extends AppCompatActivity {
         rowItems = new ArrayList<Adoption>();
 
         arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems );
-        String url = "https://firebasestorage.googleapis.com/v0/b/mydoggo-project.appspot.com/o/dog1.jpg?alt=media&token=b18c2264-ba92-415e-a80a-c1f7b82c9d1d";
+        //String url = "https://firebasestorage.googleapis.com/v0/b/mydoggo-project.appspot.com/o/dog1.jpg?alt=media&token=b18c2264-ba92-415e-a80a-c1f7b82c9d1d";
         //image_adoption.setImageResource();
         //Glide.with(getApplicationContext()).load(url).into(image_adoption);
 
@@ -91,15 +91,15 @@ public class AdoptionMenu extends AppCompatActivity {
             }
         });
 
-       // Adoption item = new Adoption(image_adoption,"Dog 1");
-       // Adoption item2 = new Adoption(image_adoption,"Dog 2");
+        // Adoption item = new Adoption(image_adoption,"Dog 1");
+        // Adoption item2 = new Adoption(image_adoption,"Dog 2");
         //Adoption item3 = new Adoption(image_adoption,"Dog 3");
         //Adoption item4 = new Adoption(image_adoption,"Dog 4");
-       // Adoption item5 = new Adoption(image_adoption,"Dog 5");
+        // Adoption item5 = new Adoption(image_adoption,"Dog 5");
         //rowItems.add(item);
         //rowItems.add(item2);
         //rowItems.add(item3);
-       // rowItems.add(item4);
+        // rowItems.add(item4);
         //rowItems.add(item5);
         //arrayAdapter.notifyDataSetChanged();
 

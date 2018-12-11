@@ -41,7 +41,6 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
     private DatabaseReference adoption;
     private DatabaseReference fav;
 
-    //Button adoptNowButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +48,6 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_favorite_adoption);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        /*adoptNowButton = findViewById(R.id.AdoptNowButton);
-        adoptNowButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), AdoptNow.class);
-                startActivity(i);
-            }
-        });*/
 
         Db = FirebaseDatabase.getInstance();
         adoption = Db.getReference("Adoption");
@@ -95,6 +85,13 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
                 holder.AdoptDogType.setText(model.getDogType());
                 holder.AdoptDogAge.setText(model.getDogAge());
                 holder.AdoptDogDesc.setText(model.getDogDesc());
+                holder.adoptNowButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(getApplicationContext(), AdoptNow.class);
+                        startActivity(i);
+                    }
+                });
 
                 Picasso.with(getBaseContext())
                         .load(model.getDogPict())

@@ -15,6 +15,8 @@ public class FavoriteAdoptionViewHolder extends RecyclerView.ViewHolder implemen
     public TextView AdoptDogName, AdoptDogType, AdoptDogAge, AdoptDogDesc;
     public ImageView AdoptDogPict;
 
+    public Button adoptNowButton;
+
     private FavoriteAdoptionClickListener favoriteAdoptionClickListener;
 
     public FavoriteAdoptionViewHolder(View itemView) {
@@ -26,6 +28,8 @@ public class FavoriteAdoptionViewHolder extends RecyclerView.ViewHolder implemen
         AdoptDogAge = itemView.findViewById(R.id.AdoptDogAge);
         AdoptDogDesc = itemView.findViewById(R.id.AdoptDogDesc);
         AdoptDogPict = itemView.findViewById(R.id.AdoptDogPict);
+
+        adoptNowButton = itemView.findViewById(R.id.AdoptNowButton);
 
         itemView.setOnClickListener(this);
 
