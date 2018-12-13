@@ -48,19 +48,15 @@
 
     <string-array name="consul1">
         <item>Please select the breed of your dog…</item>
-        <item>Australian Shepherd</item>
+        <item>Alaskan Malamute</item>
         <item>Beagle</item>
-        <item>Chihuahua</item>
+        <item>Bulldog</item>
         <item>Dalmatian</item>
-        <item>English Foxhound</item>
-        <item>French Bulldog</item>
+        <item>Doberman</item>
         <item>Golden Retriever</item>
-        <item>Harrier</item>
-        <item>Ibizan Hound</item>
-        <item>Japanese Chin</item>
-        <item>Korean Jindo Dog</item>
         <item>Labrador Retriever</item>
-        <item>Maltipoo</item>
+        <item>Rottweiler</item>
+        <item>Siberian Husky</item>
     </string-array>
 
     <string-array name="consul2">
@@ -79,16 +75,13 @@
 
     <string-array name="consul3">
         <item>Please select the symptom…</item>
-        <item>Aggression</item>
-        <item>Anxiety</item>
-        <item>Barking/howling/whining</item>
-        <item>Disorientation</item>
-        <item>Eating Non-food Items</item>
-        <item>Growling</item>
-        <item>Increased Activity</item>
-        <item>Jumping</item>
-        <item>Muscle Tremors</item>
-        <item>Nausea</item>
+        <item>Abdomen - Painful</item>
+        <item>Anorexia</item>
+        <item>Bad Breath</item>
+        <item>Breathing - Abnormal</item>
+        <item>Choking</item>
+        <item>Constipation</item>
+        <item>Defecation - Too Much</item>
     </string-array>
 
     <string-array name="breeding3">

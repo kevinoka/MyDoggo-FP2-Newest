@@ -1,23 +1,30 @@
 package com.maddoggo.mydoggoapp;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class BreedingMenu extends AppCompatActivity {
+
+    private FirebaseDatabase Db;
+    private DatabaseReference dogBreedings;
+
+    private Integer text, text2, text3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +35,17 @@ public class BreedingMenu extends AppCompatActivity {
         if(getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        Db = FirebaseDatabase.getInstance();
+        dogBreedings = Db.getReference("DogBreeding");
+
         Spinner breedingSpinner1 = (Spinner) findViewById(R.id.spinnerBreeding1);
 
         ArrayAdapter<String> breedingAdapter1 = new ArrayAdapter<>(BreedingMenu.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.consul1));
         breedingAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         breedingSpinner1.setAdapter(breedingAdapter1);
+
+        //final String[] text = {breedingSpinner1.getSelectedItem().toString()};
 
 
         Spinner breedingSpinner2 = (Spinner) findViewById(R.id.spinnerBreeding2);
@@ -43,6 +55,8 @@ public class BreedingMenu extends AppCompatActivity {
         breedingAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         breedingSpinner2.setAdapter(breedingAdapter2);
 
+        //final String[] text2 = {breedingSpinner2.getSelectedItem().toString()};
+
 
         Spinner breedingSpinner3 = (Spinner) findViewById(R.id.spinnerBreeding3);
 
@@ -51,14 +65,79 @@ public class BreedingMenu extends AppCompatActivity {
         breedingAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         breedingSpinner3.setAdapter(breedingAdapter3);
 
+        //final String[] text3 = {breedingSpinner3.getSelectedItem().toString()};
 
-    Button btn = findViewById(R.id.buttonBreeding);
+        breedingSpinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                Object item = parent.getItemAtPosition(pos);
+                String dogText = item.toString();
+                text = pos;
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
-    btn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent i = new Intent(getApplicationContext(), BreedingResult.class);
-            startActivity(i);
-        }
-    });
-}}
+        breedingSpinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                Object item = parent.getItemAtPosition(pos);
+                text2 = pos;
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        breedingSpinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                Object item = parent.getItemAtPosition(pos);
+                text3 = pos;
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
+
+        Button btn = findViewById(R.id.buttonBreeding);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), BreedingResult.class);
+                i.putExtra("DogBreed",text);
+                //i.putExtra("DogBreed",text);
+                i.putExtra("Old",text2);
+                i.putExtra("PrefDog",text3);
+
+
+
+                startActivity(i);
+                checkBreeding(text, text2, text3);
+
+            }
+        });
+    }
+
+    private void checkBreeding(final Integer text, Integer text2, final Integer text3) {
+        dogBreedings.child(String.valueOf((text+text3))).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    Toast.makeText(getBaseContext(), dataSnapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
+
+                }
+                else{
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+}
