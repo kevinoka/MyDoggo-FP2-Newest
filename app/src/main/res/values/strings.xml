@@ -145,5 +145,6 @@
     <string name="title_activity_user_sell_post_list">Sell Post List</string>
     <string name="title_activity_my_post">My Post</string>
     <string name="title_activity_adopt_now">AdoptNow</string>
+    <string name="lost_dog_item_edit_button">Edit button</string>
 
 </resources>

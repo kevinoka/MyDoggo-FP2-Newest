@@ -106,6 +106,15 @@ public class LostDogPostFragment extends Fragment implements View.OnClickListene
                     }
                 });
 
+                holder.LostDogPostEditButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(view.getContext(), LastFoundPosting.class);
+                        i.putExtra("LostFoundDogClass", clickItem);
+                        startActivity(i);
+                    }
+                });
+
                 holder.setLostDogPostClickListener(new LostDogPostClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
@@ -137,6 +146,5 @@ public class LostDogPostFragment extends Fragment implements View.OnClickListene
         super.onStop();
         adapter.stopListening();
     }
-
 
 }

@@ -22,11 +22,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
+            <ImageButton
+                android:contentDescription="@string/lost_dog_item_edit_button"
+                android:id="@+id/LostDogPostEditButton"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:src="@drawable/ic_edit_white_24dp"
+                />
+
+            <ImageButton
+                android:id="@+id/LostDogPostDeleteButton"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="55dp"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                />
+
             <ImageView
                 android:contentDescription="dog image"
                 android:id="@+id/LFDogPict"
                 android:layout_marginBottom="111dp"
                 android:scaleType="fitXY"
+                android:src="@drawable/dog_pic1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
