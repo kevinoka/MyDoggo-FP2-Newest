@@ -2,7 +2,6 @@ package com.maddoggo.mydoggoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -10,13 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
 public class BreedingMenu extends AppCompatActivity {
@@ -24,7 +19,8 @@ public class BreedingMenu extends AppCompatActivity {
     private FirebaseDatabase Db;
     private DatabaseReference dogBreedings;
 
-    private Integer text, text2, text3;
+    private Integer text, text2, text3 = 0;
+    private String type1, type2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +66,8 @@ public class BreedingMenu extends AppCompatActivity {
         breedingSpinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
-                String dogText = item.toString();
                 text = pos;
+                type1 = item.toString();
             }
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -90,6 +86,8 @@ public class BreedingMenu extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
                 text3 = pos;
+                type2 = item.toString();
+
             }
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -102,42 +100,24 @@ public class BreedingMenu extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                text = text + text3;
                 Intent i = new Intent(getApplicationContext(), BreedingResult.class);
                 i.putExtra("DogBreed",text);
+                i.putExtra("Type1",type1);
+                i.putExtra("Type2",type2);
                 //i.putExtra("DogBreed",text);
                 i.putExtra("Old",text2);
                 i.putExtra("PrefDog",text3);
 
-
-
                 startActivity(i);
-                checkBreeding(text, text2, text3);
+
+                text = text2 = text3 = 0;
 
             }
         });
     }
 
-    private void checkBreeding(final Integer text, Integer text2, final Integer text3) {
-        dogBreedings.child(String.valueOf((text+text3))).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
 
-                    Toast.makeText(getBaseContext(), dataSnapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
-
-                }
-                else{
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
 
 }

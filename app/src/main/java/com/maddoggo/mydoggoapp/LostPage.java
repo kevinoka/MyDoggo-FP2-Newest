@@ -9,8 +9,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.maddoggo.mydoggoapp.Model.LostFoundDog;
 import com.squareup.picasso.Picasso;
 
@@ -20,7 +24,14 @@ public class LostPage extends AppCompatActivity {
 
     private LostFoundDog LFDog;
     private ImageView mLostDogImage;
-    private TextView mLostDogType, mLostDogChara, mLostDogLastLoc;
+    private TextView mLostDogType, mLostDogChara, mLostDogLastLoc, mLostDogPhoneNumber;
+
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
+    private FirebaseAuth mAuth;
+    private DatabaseReference lostFoundDog;
+    private DatabaseReference lostFoundDogByUser;
+    private FirebaseDatabase Db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +42,32 @@ public class LostPage extends AppCompatActivity {
         if(getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //Init Storage --> For the dog picture
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
+
+        mAuth = FirebaseAuth.getInstance();
+        Db = FirebaseDatabase.getInstance();
+        lostFoundDog = Db.getReference("LostFoundList");
+        lostFoundDogByUser = Db.getReference("LostFoundUserList");
+
         mLostDogImage = findViewById(R.id.LostDogImage);
         mLostDogType = findViewById(R.id.LostDogType);
         mLostDogChara = findViewById(R.id.LostDogChara);
         mLostDogLastLoc = findViewById(R.id.LostDogLastLoc);
-        //Belum ada di database
-        //mLostDogPhoneNumber = findViewById(R.id.LostDogPhoneNumber);
+        mLostDogPhoneNumber = findViewById(R.id.LostDogPhoneNumber);
+
+
+        Intent i = getIntent();
+        final LostFoundDog done = (LostFoundDog) i.getSerializableExtra("LostFoundDogClass");
+        toolbar.setTitle(done.getDogName());
+        Picasso.with(getBaseContext())
+                .load(done.getDogPict())
+                .into(mLostDogImage);
+        mLostDogType.setText(done.getDogType());
+        mLostDogChara.setText(done.getDogChara());
+        mLostDogLastLoc.setText("Last known location: " + done.getDogLastSeen());
+        mLostDogPhoneNumber.setText("Phone Number: " + done.getPhoneNumber());
 
 
         FabSpeedDial fabSpeedDial = findViewById(R.id.fabSpeedDial);
@@ -51,18 +82,18 @@ public class LostPage extends AppCompatActivity {
                 int id = menuItem.getItemId();
 
                 if (id == R.id.action_fab_call) {
-                    String url = "https://api.whatsapp.com/send?phone="+"6282144477142";
+                    String url = "https://api.whatsapp.com/send?phone=+62"+done.getPhoneNumber();
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));
                     startActivity(i);
                 }else if (id == R.id.action_fab_dialpad) {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:+6282146515988"));
+                    intent.setData(Uri.parse("tel:" + done.getPhoneNumber()));
                     startActivity(intent);
                 }
                 else if (id == R.id.action_fab_message) {
                     Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-                    sendIntent.setData(Uri.parse("sms:+6282146515988"));
+                    sendIntent.setData(Uri.parse("sms:"+ done.getPhoneNumber()));
                     startActivity(sendIntent);
                 }
                 //Toast.makeText(LostPage.this, ""+menuItem.getTitle(), Toast.LENGTH_SHORT).show();
@@ -75,16 +106,6 @@ public class LostPage extends AppCompatActivity {
             }
         });
 
-        Intent i = getIntent();
-        LostFoundDog done = (LostFoundDog) i.getSerializableExtra("LostFoundDogClass");
-        toolbar.setTitle(done.getDogName());
-        Picasso.with(getBaseContext())
-                .load(done.getDogPict())
-                .into(mLostDogImage);
-        mLostDogType.setText(done.getDogType());
-        mLostDogChara.setText(done.getDogChara());
-        mLostDogLastLoc.setText("Last known location: " + done.getDogLastSeen());
-        //mLostDogPhoneNumber.setText("Phone Number: " + done.getP());
     }
 
 }

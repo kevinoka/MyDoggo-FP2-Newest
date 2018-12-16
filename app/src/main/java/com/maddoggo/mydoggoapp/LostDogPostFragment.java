@@ -1,5 +1,7 @@
 package com.maddoggo.mydoggoapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,9 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.maddoggo.mydoggoapp.Interface.LostDogPostClickListener;
-import com.maddoggo.mydoggoapp.Interface.LostFoundClickListener;
 import com.maddoggo.mydoggoapp.Model.LostFoundDog;
-import com.maddoggo.mydoggoapp.Model.SaleDog;
 import com.maddoggo.mydoggoapp.ViewHolder.LostDogPostViewHolder;
 import com.squareup.picasso.Picasso;
 
@@ -84,7 +84,7 @@ public class LostDogPostFragment extends Fragment implements View.OnClickListene
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull LostDogPostViewHolder holder, int position, @NonNull LostFoundDog model) {
+            protected void onBindViewHolder(@NonNull LostDogPostViewHolder holder, final int position, @NonNull final LostFoundDog model) {
                 holder.LFDogName.setText(model.getDogName());
                 holder.LFDogType.setText(model.getDogType());
                 holder.LFDogLast.setText(model.getDogLastSeen());
@@ -94,13 +94,13 @@ public class LostDogPostFragment extends Fragment implements View.OnClickListene
                         .load(model.getDogPict())
                         .into(holder.LFDogPict);
 
-                final LostFoundDog clickItem = model;
+                //final LostFoundDog clickItem = model;
 
                 holder.LFCard.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent i = new Intent(view.getContext(), LostPage.class);
-                        i.putExtra("LostFoundDogClass", clickItem);
+                        i.putExtra("LostFoundDogClass", model);
                         startActivity(i);
                         //Toast.makeText(BuyOrSellMenu.this, "Niceeee", Toast.LENGTH_SHORT).show();
                     }
@@ -109,10 +109,47 @@ public class LostDogPostFragment extends Fragment implements View.OnClickListene
                 holder.LostDogPostEditButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(view.getContext(), LastFoundPosting.class);
-                        i.putExtra("LostFoundDogClass", clickItem);
+
+                        //Toast.makeText(getContext(), model.getDogName(), Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getContext(), LostFoundEdit.class);
+                        i.putExtra("LostFoundDogClass", model);
+                        i.putExtra("Key", adapter.getRef(position).getKey());
                         startActivity(i);
                     }
+                });
+
+                holder.LostDogPostDeleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //lostFoundDog.child(adapter.getRef(position).getKey()).removeValue();
+                        //Toast.makeText(getContext(), model.getDogName(), Toast.LENGTH_SHORT).show();
+                        //adapter.getRef(position).removeValue();
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                        builder.setTitle("Confirm");
+                        builder.setMessage("Are you sure?");
+
+                        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                lostFoundDog.child(adapter.getRef(position).getKey()).removeValue();
+                                builder.setMessage("Post Deleted");
+                                dialog.dismiss();
+                            }
+                        });
+
+                        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
+
                 });
 
                 holder.setLostDogPostClickListener(new LostDogPostClickListener() {

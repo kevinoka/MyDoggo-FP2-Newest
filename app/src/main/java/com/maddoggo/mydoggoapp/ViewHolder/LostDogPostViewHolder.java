@@ -3,7 +3,6 @@ package com.maddoggo.mydoggoapp.ViewHolder;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +14,7 @@ public class LostDogPostViewHolder extends RecyclerView.ViewHolder implements Vi
     public TextView LFDogType, LFDogChara, LFDogLast, LFDogName;
     public ImageView LFDogPict;
     public CardView LFCard;
-    public ImageButton LostDogPostEditButton;
+    public ImageButton LostDogPostEditButton, LostDogPostDeleteButton;
 
     private LostDogPostClickListener lostDogPostClickListener;
 
@@ -29,6 +28,7 @@ public class LostDogPostViewHolder extends RecyclerView.ViewHolder implements Vi
         LFDogPict = itemView.findViewById(R.id.LFDogPict);
         LFCard = itemView.findViewById(R.id.LFCard);
         LostDogPostEditButton = itemView.findViewById(R.id.LostDogPostEditButton);
+        LostDogPostDeleteButton = itemView.findViewById(R.id.LostDogPostDeleteButton);
 
         itemView.setOnClickListener(this);
     }

@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -32,7 +31,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.UUID;
 
-public class LastFoundPosting extends AppCompatActivity {
+public class LostFoundEdit extends AppCompatActivity {
 
     FirebaseStorage storage;
     StorageReference storageRef;
@@ -43,14 +42,16 @@ public class LastFoundPosting extends AppCompatActivity {
     private FirebaseDatabase Db;
     private DatabaseReference lostFoundDog;
     private DatabaseReference lostFoundDogByUser;
-    private LostFoundDog lostFoundDogIn;
+    private LostFoundDog lostDog;
 
     private EditText editLFDogName, editLFDogTypeLF, editLFDogLastSeen, editLFChara, editLFPhone;
+
+    private String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_last_found_posting);
+        setContentView(R.layout.activity_lost_found_edit);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -63,16 +64,41 @@ public class LastFoundPosting extends AppCompatActivity {
         lostFoundDog = Db.getReference("LostFoundList");
         lostFoundDogByUser = Db.getReference("LostFoundUserList");
 
-        lostFoundDogIn = new LostFoundDog() ;
+        editLFDogName = findViewById(R.id.EditNameLFEdit);
+        editLFDogTypeLF = findViewById(R.id.EditDogTypeLFEdit);
+        editLFDogLastSeen = findViewById(R.id.EditLocationLFEdit);
+        editLFChara = findViewById(R.id.EditDescLFEdit);
+        editLFPhone = findViewById(R.id.EditPhoneLFEdit);
 
-        editLFDogName = findViewById(R.id.EditNameLF);
-        editLFDogTypeLF = findViewById(R.id.EditDogTypeLF);
-        editLFDogLastSeen = findViewById(R.id.EditLocationLF);
-        editLFChara = findViewById(R.id.EditDescLF);
-        editLFPhone = findViewById(R.id.EditPhoneLF);
+        imageView = findViewById(R.id.ImageLFEdit);
 
-        imageView = findViewById(R.id.ImageLFPosting);
-        
+        Intent i = getIntent();
+        key = i.getStringExtra("Key");
+
+
+        lostDog = (LostFoundDog) i.getSerializableExtra("LostFoundDogClass");
+
+        lostFoundDog.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                editLFDogName.setText(lostDog.getDogName());
+                editLFDogTypeLF.setText(lostDog.getDogType());
+                editLFDogLastSeen.setText(lostDog.getDogLastSeen());
+                editLFChara.setText(lostDog.getDogChara());
+                editLFPhone.setText(lostDog.getPhoneNumber());
+                Picasso.with(getBaseContext())
+                        .load(lostDog.getDogPict())
+                        .into(imageView);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     private void SaveLFDog() {
@@ -80,20 +106,13 @@ public class LastFoundPosting extends AppCompatActivity {
         lostFoundDog.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                long no = dataSnapshot.getChildrenCount();
 
+                lostFoundDog.child(key).child("dogName").setValue(editLFDogName.getText().toString());
+                lostFoundDog.child(key).child("dogChara").setValue(editLFChara.getText().toString());
+                lostFoundDog.child(key).child("dogLastSeen").setValue(editLFDogLastSeen.getText().toString());
+                lostFoundDog.child(key).child("dogType").setValue(editLFDogTypeLF.getText().toString());
 
-                lostFoundDogIn.setDogName(editLFDogName.getText().toString());
-                lostFoundDogIn.setDogType(editLFDogTypeLF.getText().toString());
-                lostFoundDogIn.setDogLastSeen(editLFDogLastSeen.getText().toString());
-                lostFoundDogIn.setDogChara(editLFChara.getText().toString());
-                //lostFoundDogIn.setPhoneNumber(editLFPhone.getText().toString());
-
-                lostFoundDogIn.setOwner(mAuth.getCurrentUser().getUid());
-
-                lostFoundDog.child("LFDog"+no).setValue(lostFoundDogIn);
-
-                lostFoundDogByUser.child(mAuth.getCurrentUser().getUid()).child("LFDog"+no).setValue(true);
+                lostFoundDog.child(key).child("dogPict").setValue(lostDog.getDogPict());
 
             }
 
@@ -118,8 +137,6 @@ public class LastFoundPosting extends AppCompatActivity {
 
         if (id == R.id.mybutton) {
             SaveLFDog();
-            Intent i = new Intent(getApplicationContext(), LostFoundMenu.class);
-            startActivity(i);
             this.finish();
         }
         return super.onOptionsItemSelected(item);
@@ -130,7 +147,6 @@ public class LastFoundPosting extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select picture"), 9999);
-
 
     }
 
@@ -155,12 +171,12 @@ public class LastFoundPosting extends AppCompatActivity {
                                 imageFolder.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        lostFoundDogIn.setDogPict(uri.toString());
+                                        lostDog.setDogPict(uri.toString());
                                         Toast.makeText(getBaseContext(), "Image uploaded successfully", Toast.LENGTH_SHORT).show();
                                         progressDialog.dismiss();
 
                                         Picasso.with(getBaseContext())
-                                                .load(lostFoundDogIn.getDogPict())
+                                                .load(lostDog.getDogPict())
                                                 .into(imageView);
 
                                     }

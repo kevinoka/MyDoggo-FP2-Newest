@@ -35,6 +35,7 @@
                 />
 
             <ImageButton
+                android:contentDescription="@string/sale_dog_item_delete_button"
                 android:id="@+id/LostDogPostDeleteButton"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -42,6 +43,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="55dp"
                 style="@style/Widget.MaterialComponents.Button.Icon"
+                android:src="@drawable/ic_delete_button"
                 />
 
             <ImageView

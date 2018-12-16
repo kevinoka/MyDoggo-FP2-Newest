@@ -3,6 +3,7 @@ package com.maddoggo.mydoggoapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import com.maddoggo.mydoggoapp.Model.Adoption;
-import com.maddoggo.mydoggoapp.Model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +35,11 @@ public class AdoptionMenu extends AppCompatActivity {
     List<Adoption> rowItems;
     ImageView image_adoption;
 
+    private FirebaseAuth mAuth;
     private FirebaseDatabase Db;
     private DatabaseReference adoption;
     private DatabaseReference fav;
+    private DatabaseReference favAdoptionList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +59,20 @@ public class AdoptionMenu extends AppCompatActivity {
             }
         });
 
+        FloatingActionButton fab2 = findViewById(R.id.fab2);
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), AddAdoption.class);
+                startActivity(i);
+            }
+        });
+
+        mAuth = FirebaseAuth.getInstance();
         Db = FirebaseDatabase.getInstance();
         adoption = Db.getReference("Adoption");
-        fav = Db.getReference("FavAdoption");
+        //fav = Db.getReference("FavAdoption");
+        favAdoptionList = Db.getReference("FavAdoptionUserList");
 
 
         //add the view via xml or programmatically
@@ -68,21 +83,38 @@ public class AdoptionMenu extends AppCompatActivity {
         //image_adoption.setImageResource();
         //Glide.with(getApplicationContext()).load(url).into(image_adoption);
 
-        adoption.addValueEventListener(new ValueEventListener() {
+        adoption.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Adoption item  = new Adoption();
+                DataSnapshot ds = dataSnapshot;
                 //dataSnapshot.getChildren()
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    item.setDogName(ds.child("dogName").getValue().toString());
-                    item.setDogDesc(ds.child("dogDesc").getValue().toString());
-                    item.setDogPict(ds.child("dogPict").getValue().toString());
-                    item.setDogType(ds.child("dogType").getValue().toString());
-                    item.setDogAge(ds.child("dogAge").getValue().toString());
+                //for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                item.setDogName(ds.child("dogName").getValue().toString());
+                item.setDogDesc(ds.child("dogDesc").getValue().toString());
+                item.setDogPict(ds.child("dogPict").getValue().toString());
+                item.setDogType(ds.child("dogType").getValue().toString());
+                item.setDogAge(ds.child("dogAge").getValue().toString());
+                item.setDogId(ds.child("dogId").getValue().toString());
 
-                    rowItems.add(item);
-                    arrayAdapter.notifyDataSetChanged();
-                }
+                rowItems.add(item);
+                arrayAdapter.notifyDataSetChanged();
+                //}
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
             }
 
             @Override
@@ -90,18 +122,6 @@ public class AdoptionMenu extends AppCompatActivity {
 
             }
         });
-
-        // Adoption item = new Adoption(image_adoption,"Dog 1");
-        // Adoption item2 = new Adoption(image_adoption,"Dog 2");
-        //Adoption item3 = new Adoption(image_adoption,"Dog 3");
-        //Adoption item4 = new Adoption(image_adoption,"Dog 4");
-        // Adoption item5 = new Adoption(image_adoption,"Dog 5");
-        //rowItems.add(item);
-        //rowItems.add(item2);
-        //rowItems.add(item3);
-        // rowItems.add(item4);
-        //rowItems.add(item5);
-        //arrayAdapter.notifyDataSetChanged();
 
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
@@ -130,12 +150,11 @@ public class AdoptionMenu extends AppCompatActivity {
                 //Toast.makeText(AdoptionMenu.this, "Right", Toast.LENGTH_SHORT).show();
                 final Adoption obj = (Adoption) dataObject;
 
-
-                fav.addListenerForSingleValueEvent(new ValueEventListener() {
+                favAdoptionList.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        long no = dataSnapshot.getChildrenCount();
-                        fav.child("FavDog"+no).setValue(obj);
+
+                        favAdoptionList.child(mAuth.getCurrentUser().getUid().toString()).child(obj.getDogId()).setValue(true);
                     }
 
                     @Override
@@ -143,6 +162,20 @@ public class AdoptionMenu extends AppCompatActivity {
 
                     }
                 });
+/*
+                fav.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        long no = dataSnapshot.getChildrenCount();
+                        //fav.child("FavDog"+no).setValue(obj);
+                        favAdoptionList.child("FavDog"+no).setValue(true);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });*/
             }
 
             @Override

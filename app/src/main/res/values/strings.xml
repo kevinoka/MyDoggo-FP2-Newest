@@ -104,7 +104,7 @@
     <string name="title_activity_lost_page">Lost Page</string>
     <string name="title_activity_my_profile">My Profile</string>
     <string name="title_activity_edit_profile">Edit Profile</string>
-    <string name="title_activity_favorite_adoption">Adoption</string>
+    <string name="title_activity_favorite_adoption">My Favorites</string>
     <string name="title_activity_sell_posting">Create Post</string>
     <string name="title_activity_last_found_posting">Create Post</string>
     <string name="title_activity_breeding_result">Result</string>
@@ -144,7 +144,10 @@
     <string name="price">Price</string>
     <string name="title_activity_user_sell_post_list">Sell Post List</string>
     <string name="title_activity_my_post">My Post</string>
-    <string name="title_activity_adopt_now">AdoptNow</string>
+    <string name="title_activity_adopt_now">Adopt Now</string>
     <string name="lost_dog_item_edit_button">Edit button</string>
+    <string name="title_activity_sale_dog_edit">Sale Dog Edit</string>
+    <string name="title_activity_add_adoption">Add New Adoption</string>
+    <string name="sale_dog_item_delete_button">Delete button</string>
 
 </resources>

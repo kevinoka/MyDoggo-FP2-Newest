@@ -175,7 +175,7 @@
                 android:value="com.maddoggo.mydoggoapp.BuyOrSellMenu" />
         </activity>
         <activity
-            android:name=".LastFoundPosting"
+            android:name=".LostFoundPosting"
             android:label="@string/title_activity_last_found_posting"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -201,7 +201,23 @@
         <activity
             android:name=".AdoptNow"
             android:label="@string/title_activity_adopt_now"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maddoggo.mydoggoapp.FavoriteAdoption" />
+        </activity>
+
+        <activity android:name=".LostFoundEdit"
+            android:label="Edit your post"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SaleDogEdit"
+            android:label="@string/title_activity_sale_dog_edit"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddAdoption"
+            android:label="@string/title_activity_add_adoption"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

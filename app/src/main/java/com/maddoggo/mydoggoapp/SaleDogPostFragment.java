@@ -1,5 +1,7 @@
 package com.maddoggo.mydoggoapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -82,7 +84,7 @@ public class SaleDogPostFragment extends Fragment implements View.OnClickListene
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull SaleDogPostViewHolder holder, int position, @NonNull SaleDog model) {
+            protected void onBindViewHolder(@NonNull SaleDogPostViewHolder holder, final int position, @NonNull final SaleDog model) {
                 //holder.BSUserName.setText(model.getOwner());
                 holder.BSDogName.setText(model.getDogName());
                 holder.BSDogPrice.setText(model.getPrice());
@@ -92,15 +94,59 @@ public class SaleDogPostFragment extends Fragment implements View.OnClickListene
                         .load(model.getSellDogImage())
                         .into(holder.BSDogImage);
 
-                final SaleDog clickItem = model;
+                //final SaleDog clickItem = model;
 
                 holder.BSCard.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent i = new Intent(view.getContext(), BuyPage.class);
-                        i.putExtra("SaleDogClass", clickItem);
+                        i.putExtra("SaleDogClass", model);
                         startActivity(i);
                     }
+                });
+
+                holder.SaleDogPostEditButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(getContext(), SaleDogEdit.class);
+                        i.putExtra("SaleDogClass", model);
+                        i.putExtra("Key", adapter.getRef(position).getKey());
+                        startActivity(i);
+                    }
+                });
+
+                holder.SaleDogPostDeleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //lostFoundDog.child(adapter.getRef(position).getKey()).removeValue();
+                        //Toast.makeText(getContext(), model.getDogName(), Toast.LENGTH_SHORT).show();
+                        //adapter.getRef(position).removeValue();
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                        builder.setTitle("Confirm");
+                        builder.setMessage("Are you sure?");
+
+                        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                saleDog.child(adapter.getRef(position).getKey()).removeValue();
+                                builder.setMessage("Post Deleted");
+                                dialog.dismiss();
+                            }
+                        });
+
+                        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
+
                 });
 
                 holder.setSaleDogPostClickListener(new SaleDogPostClickListener() {

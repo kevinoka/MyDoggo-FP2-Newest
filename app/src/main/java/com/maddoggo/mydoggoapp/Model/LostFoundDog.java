@@ -3,7 +3,7 @@ package com.maddoggo.mydoggoapp.Model;
 import java.io.Serializable;
 
 public class LostFoundDog implements Serializable {
-    private String owner, dogType, dogChara, dogLastSeen, dogPict, dogName;
+    private String owner, dogType, dogChara, dogLastSeen, dogPict, dogName, phoneNumber;
 
     public LostFoundDog(){
         this.owner = "";
@@ -12,9 +12,10 @@ public class LostFoundDog implements Serializable {
         this.dogChara = "";
         this.dogLastSeen = "";
         this.dogPict = "";
+        this.phoneNumber = "";
     }
 
-    public LostFoundDog(String owner, String dogType, String dogName, String dogChara, String dogLastSeen, String dogPict) {
+    public LostFoundDog(String owner, String dogType, String dogName, String dogChara, String dogLastSeen, String dogPict, String phoneNumber) {
 
         this.owner = owner;
         this.dogType = dogType;
@@ -22,6 +23,7 @@ public class LostFoundDog implements Serializable {
         this.dogChara = dogChara;
         this.dogLastSeen = dogLastSeen;
         this.dogPict = dogPict;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getOwner() {
@@ -70,5 +72,13 @@ public class LostFoundDog implements Serializable {
 
     public void setDogPict(String dogPict) {
         this.dogPict = dogPict;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

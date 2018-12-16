@@ -3,8 +3,6 @@ package com.maddoggo.mydoggoapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,34 +10,34 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.Query;
 import com.maddoggo.mydoggoapp.Interface.FavoriteAdoptionClickListener;
 import com.maddoggo.mydoggoapp.Model.Adoption;
-import com.maddoggo.mydoggoapp.Model.AdoptionFav;
 import com.maddoggo.mydoggoapp.ViewHolder.FavoriteAdoptionViewHolder;
 import com.squareup.picasso.Picasso;
+
+import java.io.Serializable;
+import java.util.Objects;
 
 public class FavoriteAdoption extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView recyclerFavoriteAdoption;
     private RecyclerView.LayoutManager layoutManager;
 
-    private FirebaseRecyclerOptions<AdoptionFav> options;
+    private FirebaseRecyclerOptions<Adoption> options;
     private FirebaseRecyclerAdapter adapter;
 
+    private FirebaseAuth mAuth;
     private FirebaseDatabase Db;
     private DatabaseReference adoption;
     private DatabaseReference fav;
+    private DatabaseReference favAdoptionList;
 
 
     @Override
@@ -48,10 +46,14 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_favorite_adoption);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if(getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        mAuth = FirebaseAuth.getInstance();
         Db = FirebaseDatabase.getInstance();
         adoption = Db.getReference("Adoption");
-        fav = Db.getReference("FavAdoption");
+        //fav = Db.getReference("FavAdoption");
+        favAdoptionList = Db.getReference("FavAdoptionUserList");
 
         recyclerFavoriteAdoption = findViewById(R.id.recFavoriteAdoptionList);
 
@@ -61,26 +63,17 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
 
     private void loadFavAdopt() {
 
-        options = new FirebaseRecyclerOptions.Builder<AdoptionFav>()
-                .setQuery(fav,AdoptionFav.class)
+        Query query = favAdoptionList.child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid().toString());
+
+        options = new FirebaseRecyclerOptions.Builder<Adoption>()
+                .setIndexedQuery(query,adoption,Adoption.class)
                 .build();
 
-        adapter = new FirebaseRecyclerAdapter<AdoptionFav, FavoriteAdoptionViewHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<Adoption, FavoriteAdoptionViewHolder>(options) {
 
-
-
-            @NonNull
-            @Override
-            public FavoriteAdoptionViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                View view = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.favorite_adoption_list,viewGroup,false);
-
-                return new FavoriteAdoptionViewHolder(view);
-
-            }
 
             @Override
-            protected void onBindViewHolder(@NonNull FavoriteAdoptionViewHolder holder, int position, @NonNull AdoptionFav model) {
+            protected void onBindViewHolder(@NonNull FavoriteAdoptionViewHolder holder, int position, @NonNull Adoption model) {
                 holder.AdoptDogName.setText(model.getDogName());
                 holder.AdoptDogType.setText(model.getDogType());
                 holder.AdoptDogAge.setText(model.getDogAge());
@@ -97,14 +90,14 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
                         .load(model.getDogPict())
                         .into(holder.AdoptDogPict);
 
-                final AdoptionFav clickItem = model;
+                final Adoption clickItem = model;
 
                 holder.FavAdoptionCard.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i = new Intent(view.getContext(), FavoriteAdoption.class);
-                        i.putExtra("AdoptionFavClass", clickItem);
-                        startActivity(i);
+                       /* Intent i = new Intent(view.getContext(), FavoriteAdoption.class);
+                        i.putExtra("AdoptionFavClass", (Serializable) clickItem);
+                        startActivity(i);*/
                     }
                 });
 
@@ -114,6 +107,15 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
 
                     }
                 });
+            }
+
+            @NonNull
+            @Override
+            public FavoriteAdoptionViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View view = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.favorite_adoption_list,viewGroup,false);
+
+                return new FavoriteAdoptionViewHolder(view);
 
             }
 

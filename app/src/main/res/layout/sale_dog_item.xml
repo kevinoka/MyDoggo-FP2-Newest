@@ -47,6 +47,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
+            <ImageButton
+                android:contentDescription="@string/lost_dog_item_edit_button"
+                android:id="@+id/SaleDogPostEditButton"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:src="@drawable/ic_edit_white_24dp"
+                />
+
+            <ImageButton
+                android:contentDescription="@string/sale_dog_item_delete_button"
+                android:id="@+id/SaleDogPostDeleteButton"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="55dp"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:src="@drawable/ic_delete_button"
+                />
+
             <ImageView
                 android:contentDescription="dog image"
                 android:id="@+id/BSDogImage"

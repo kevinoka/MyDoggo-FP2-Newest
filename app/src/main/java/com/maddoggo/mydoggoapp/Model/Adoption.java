@@ -2,18 +2,24 @@ package com.maddoggo.mydoggoapp.Model;
 
 
 public class Adoption {
-    private String dogName, dogDesc, dogAge, dogType, dogPict;
+    private String dogName, dogDesc, dogAge, dogType, dogPict, dogId;
 
-    public Adoption(String dogName, String dogDesc, String dogAge, String dogType, String dogPict) {
+    public Adoption(){
+        this.dogName = " ";
+        this.dogDesc = " ";
+        this.dogAge = " ";
+        this.dogType = " ";
+        this.dogPict = " ";
+        this.dogId = " ";
+    }
+
+    public Adoption(String dogName, String dogDesc, String dogAge, String dogType, String dogPict, String dogId) {
         this.dogName = dogName;
         this.dogDesc = dogDesc;
         this.dogAge = dogAge;
         this.dogType = dogType;
         this.dogPict = dogPict;
-
-    }
-
-    public Adoption(){
+        this.dogId = dogId;
 
     }
 
@@ -55,5 +61,13 @@ public class Adoption {
 
     public void setDogPict(String dogPict) {
         this.dogPict = dogPict;
+    }
+
+    public String getDogId() {
+        return dogId;
+    }
+
+    public void setDogId(String dogId) {
+        this.dogId = dogId;
     }
 }

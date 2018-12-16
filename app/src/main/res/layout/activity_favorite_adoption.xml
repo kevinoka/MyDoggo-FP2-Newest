@@ -22,5 +22,18 @@
 
     <include layout="@layout/content_favorite_adoption" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your favorite"
+            android:textSize="25sp"
+            android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

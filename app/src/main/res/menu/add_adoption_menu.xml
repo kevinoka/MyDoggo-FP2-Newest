@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/mybutton"
-        android:title="SHARE"
+        android:id="@+id/save_new_adoption_button"
+        android:title="SAVE"
         android:iconTint="@color/colorAccent"
         app:showAsAction="always"
         />
