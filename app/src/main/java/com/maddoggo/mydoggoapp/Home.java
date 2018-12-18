@@ -158,7 +158,7 @@ public class Home extends AppCompatActivity
                 startActivity(i);
                 break;
             case R.id.location_card:
-                i = new Intent(this, MapsActivity.class);
+                i = new Intent(this, LocationMenu.class);
                 startActivity(i);
                 break;
             default:

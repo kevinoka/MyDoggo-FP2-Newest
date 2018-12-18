@@ -106,7 +106,11 @@
         <activity
             android:name=".LocationMenu"
             android:label="@string/title_activity_location_menu"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maddoggo.mydoggoapp.Home" />
+        </activity>
         <activity
             android:name=".LostFoundMenu"
             android:label="@string/title_activity_lost_found_menu"
