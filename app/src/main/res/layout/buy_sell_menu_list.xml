@@ -39,8 +39,8 @@
         android:focusable="true"
         android:layout_gravity="center"
         app:cardCornerRadius="4dp"
-        android:layout_width="340dp"
-        android:layout_height="300dp"
+        android:layout_width="320dp"
+        android:layout_height="280dp"
         android:layout_margin="8dp">
 
         <RelativeLayout
@@ -50,7 +50,7 @@
             <ImageView
                 android:contentDescription="dog image"
                 android:id="@+id/BSDogImage"
-                android:layout_marginBottom="90dp"
+                android:layout_marginBottom="70dp"
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -62,7 +62,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="200dp"
                 android:padding="15dp"
-                android:textSize="25sp"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
                 android:textStyle="bold"/>
 
             <TextView
@@ -70,9 +71,9 @@
                 android:id="@+id/BSDogPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="238dp"
+                android:layout_marginTop="230dp"
                 android:padding="15dp"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/colorAccent"/>
 
             <TextView
@@ -80,11 +81,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:layout_marginTop="240dp"
+                android:layout_marginTop="230dp"
                 android:layout_marginStart="200dp"
                 android:layout_marginEnd="15dp"
                 android:text="Location"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/darker_gray"/>
 
         </RelativeLayout>

@@ -11,22 +11,35 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp" >
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ProfileImage"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:contentDescription="Profile"
-            app:srcCompat="@drawable/ic_account_circle_black"/>
+        android:layout_height="wrap_content" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_vertical"
-            android:layout_marginTop="100dp">
+            android:background="@color/colorAccent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ProfileImage"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                app:civ_border_width="1dp"
+                app:civ_border_color="@color/colorPrimary"
+                android:contentDescription="Profile"
+                app:srcCompat="@drawable/ic_account_circle_black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:background="@color/colorAccent"
+            android:layout_marginTop="110dp">
 
             <View
                 android:layout_width="match_parent"
@@ -37,24 +50,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_marginTop="5dp"
-                android:textSize="20sp"/>
+                android:layout_marginTop="4dp"
+                android:textColor="@android:color/white"
+                android:text="Name"
+                android:textSize="16sp"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="20dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorTextContent"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="15dp"
             android:gravity="center_vertical"
-            android:layout_marginTop="180dp">
+            android:layout_marginTop="165dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -67,7 +78,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="20sp"/>
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:text="email@email.com"/>
 
             <View
                 android:layout_width="match_parent"
@@ -91,7 +104,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:text="0811 0429 2018"/>
 
             <View
@@ -116,7 +130,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:text="Jalan Raya Street 77, Denpasar"/>
 
             <View
@@ -141,7 +156,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
                 android:text="04/05/1988"/>
 
             <View

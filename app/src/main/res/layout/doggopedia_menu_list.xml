@@ -14,8 +14,8 @@
         android:focusable="true"
         android:layout_gravity="center"
         app:cardCornerRadius="4dp"
-        android:layout_width="340dp"
-        android:layout_height="400dp"
+        android:layout_width="320dp"
+        android:layout_height="410dp"
         android:layout_margin="8dp">
 
         <RelativeLayout
@@ -25,7 +25,7 @@
             <ImageView
                 android:contentDescription="@string/dog_image"
                 android:id="@+id/DPImage"
-                android:layout_marginBottom="200dp"
+                android:layout_marginBottom="210dp"
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -38,7 +38,8 @@
                 android:layout_marginTop="190dp"
                 android:padding="15dp"
                 android:text="Beagle"
-                android:textSize="25sp"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
                 android:textStyle="bold"/>
 
             <TextView
@@ -48,8 +49,7 @@
                 android:layout_marginTop="225dp"
                 android:padding="15dp"
                 android:text="Blalblabla"
-                android:textSize="16sp"
-                android:textColor="@android:color/black"/>
+                android:textSize="16sp"/>
 
         </RelativeLayout>
 

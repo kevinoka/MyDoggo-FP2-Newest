@@ -15,9 +15,9 @@
         android:layout_gravity="center"
         app:cardCornerRadius="6dp"
         android:layout_width="315dp"
-        android:layout_height="380dp"
+        android:layout_height="360dp"
         android:layout_margin="6dp"
-        android:paddingBottom="2dp"
+        android:paddingBottom="6dp"
         android:foreground="?android:attr/selectableItemBackground">
 
         <RelativeLayout
@@ -26,7 +26,7 @@
 
             <ImageView
                 android:id="@+id/AdoptDogPict"
-                android:contentDescription="Dog picture"
+                android:contentDescription="@string/dog_picture_fav_adoption"
                 android:layout_marginBottom="170dp"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
@@ -39,40 +39,41 @@
                 android:id="@+id/AdoptDogName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="195dp"
+                android:layout_marginTop="193dp"
                 android:padding="15dp"
                 android:text="Brown Dog"
-                android:textSize="25sp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
                 android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/AdoptDogType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="230dp"
+                android:layout_marginTop="222dp"
                 android:padding="15dp"
                 android:text="Pitbull"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"/>
 
             <TextView
                 android:id="@+id/AdoptDogAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="252dp"
+                android:layout_marginTop="242dp"
                 android:padding="15dp"
                 android:text="4 years old"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"/>
 
             <TextView
                 android:id="@+id/AdoptDogDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="275dp"
+                android:layout_marginTop="263dp"
                 android:padding="15dp"
                 android:text="Brief Description"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"/>
 
             <Button

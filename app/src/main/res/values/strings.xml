@@ -150,5 +150,7 @@
     <string name="title_activity_add_adoption">Add New Adoption</string>
     <string name="sale_dog_item_delete_button">Delete button</string>
     <string name="title_activity_add_dogopedia">AddDogopedia</string>
+    <string name="dog_image_for_adoption">Dog image for adoption</string>
+    <string name="dog_picture_fav_adoption">Dog picture</string>
 
 </resources>

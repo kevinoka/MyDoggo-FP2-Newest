@@ -177,7 +177,6 @@ public class Home extends AppCompatActivity
             //Profile function
             i = new Intent(this, MyProfile.class);
             startActivity(i);
-            item.setChecked(true);
         } else if (id == R.id.nav_logout) {
             //Logout function
             logOut();

@@ -53,7 +53,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Welcome" />
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home_navigation_drawer"
@@ -225,7 +224,11 @@
         <activity
             android:name=".AddDogopedia"
             android:label="@string/title_activity_add_dogopedia"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maddoggo.mydoggoapp.DoggopediaMenu" />
+        </activity>
     </application>
 
 </manifest>

@@ -29,10 +29,14 @@ public class arrayAdapter extends ArrayAdapter<Adoption> {
         }
 
         TextView dog_name = convertView.findViewById(R.id.dog_name);
+        TextView dog_type = convertView.findViewById(R.id.dog_type);
+        TextView dog_age = convertView.findViewById(R.id.dog_age);
         ImageView image_adoption = convertView.findViewById(R.id.image_adoption);
         //String url = "https://firebasestorage.googleapis.com/v0/b/mydoggo-project.appspot.com/o/dog1.jpg?alt=media&token=b18c2264-ba92-415e-a80a-c1f7b82c9d1d";
 
         dog_name.setText(card_item.getDogName());
+        dog_type.setText(card_item.getDogType());
+        dog_age.setText(card_item.getDogAge());
 
         Picasso.with(getContext())
                 .load(card_item.getDogPict())

@@ -17,7 +17,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:civ_border_width="1dp"
+        app:civ_border_width="0.5dp"
         app:civ_border_color="@color/colorPrimary"
         android:contentDescription="@string/nav_header_desc"
         app:srcCompat="@drawable/ic_account_circle_black" />
