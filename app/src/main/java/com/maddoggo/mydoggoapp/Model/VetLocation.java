@@ -1,16 +1,18 @@
 package com.maddoggo.mydoggoapp.Model;
 
 public class VetLocation {
-    private String vetName, vetLocation;
+    private String vetName, vetLocation, vetMapLocation;
 
     public VetLocation() {
         this.vetName = " ";
         this.vetLocation = " ";
+        this.vetMapLocation = " ";
     }
 
-    public VetLocation(String vetName, String vetLocation) {
+    public VetLocation(String vetName, String vetLocation, String vetMapLocation) {
         this.vetName = vetName;
         this.vetLocation = vetLocation;
+        this.vetMapLocation = vetMapLocation;
     }
 
     public String getVetName() {
@@ -27,5 +29,13 @@ public class VetLocation {
 
     public void setVetLocation(String vetLocation) {
         this.vetLocation = vetLocation;
+    }
+
+    public String getVetMapLocation() {
+        return vetMapLocation;
+    }
+
+    public void setVetMapLocation(String vetMapLocation) {
+        this.vetMapLocation = vetMapLocation;
     }
 }

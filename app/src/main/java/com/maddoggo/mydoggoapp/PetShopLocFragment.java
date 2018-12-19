@@ -1,5 +1,7 @@
 package com.maddoggo.mydoggoapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,16 +14,11 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.maddoggo.mydoggoapp.Interface.DoggopediaClickListener;
 import com.maddoggo.mydoggoapp.Interface.PetShopLocClickListener;
-import com.maddoggo.mydoggoapp.Model.Doggopedia;
 import com.maddoggo.mydoggoapp.Model.PetShopLocation;
-import com.maddoggo.mydoggoapp.ViewHolder.DoggopediaViewHolder;
 import com.maddoggo.mydoggoapp.ViewHolder.PetShopLocViewHolder;
-import com.squareup.picasso.Picasso;
 
 public class PetShopLocFragment extends Fragment implements View.OnClickListener {
 
@@ -74,9 +71,19 @@ public class PetShopLocFragment extends Fragment implements View.OnClickListener
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull PetShopLocViewHolder holder, int position, @NonNull PetShopLocation model) {
+            protected void onBindViewHolder(@NonNull PetShopLocViewHolder holder, int position, @NonNull final PetShopLocation model) {
                 holder.mPetShopNameLocation.setText(model.getPetShopName());
                 holder.mPetShopLocLocation.setText(model.getPetShopLoc());
+
+                holder.mPetShopLocMapButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Uri gmmIntentUri = Uri.parse("geo:0,0?q= " + model.getPetShopMapLoc());
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        startActivity(mapIntent);
+                    }
+                });
 
 
                 final PetShopLocation clickItem = model;

@@ -106,7 +106,7 @@
         <activity
             android:name=".LocationMenu"
             android:label="@string/title_activity_location_menu"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.maddoggo.mydoggoapp.Home" />
@@ -210,8 +210,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.maddoggo.mydoggoapp.FavoriteAdoption" />
         </activity>
-
-        <activity android:name=".LostFoundEdit"
+        <activity
+            android:name=".LostFoundEdit"
             android:label="Edit your post"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -222,6 +222,10 @@
             android:name=".AddAdoption"
             android:label="@string/title_activity_add_adoption"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddDogopedia"
+            android:label="@string/title_activity_add_dogopedia"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

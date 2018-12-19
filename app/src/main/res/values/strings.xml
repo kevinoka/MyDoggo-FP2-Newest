@@ -149,5 +149,6 @@
     <string name="title_activity_sale_dog_edit">Sale Dog Edit</string>
     <string name="title_activity_add_adoption">Add New Adoption</string>
     <string name="sale_dog_item_delete_button">Delete button</string>
+    <string name="title_activity_add_dogopedia">AddDogopedia</string>
 
 </resources>
