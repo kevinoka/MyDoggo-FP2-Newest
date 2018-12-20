@@ -41,6 +41,7 @@ public class AdoptionMenu extends AppCompatActivity {
     private DatabaseReference fav;
     private DatabaseReference favAdoptionList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,7 @@ public class AdoptionMenu extends AppCompatActivity {
             }
         });
 
+
         FloatingActionButton fab2 = findViewById(R.id.fab2);
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,8 +69,15 @@ public class AdoptionMenu extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
         mAuth = FirebaseAuth.getInstance();
+        fab2.hide();
+
+        if(mAuth.getCurrentUser().getUid().equalsIgnoreCase("tk3uoqdHIwgPQruwgqYyWvx0pZj2")){
+
+            fab2.show();
+        }
+
+
         Db = FirebaseDatabase.getInstance();
         adoption = Db.getReference("Adoption");
         //fav = Db.getReference("FavAdoption");

@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
                         //check validation
                         if (TextUtils.isEmpty(editEmail.getText().toString())) {
+                            //editEmail.setError("The Email cannot be empty.");
                             Snackbar.make(rootLayout, "Please enter your email address", Snackbar.LENGTH_SHORT)
                                     .show();
                             return;
@@ -186,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(editLastName.getText().toString()))
                 {
+                    //editLastName.setError("The Email cannot be empty.");
                     Snackbar.make(rootLayout, "Please enter your last name", Snackbar.LENGTH_SHORT)
                             .show();
                     return;

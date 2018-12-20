@@ -1,20 +1,24 @@
 package com.maddoggo.mydoggoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.maddoggo.mydoggoapp.Interface.DoggopediaClickListener;
@@ -26,11 +30,12 @@ public class DoggopediaMenu extends AppCompatActivity implements View.OnClickLis
 
     private CardView DPCard;
     private RecyclerView recyclerDoggopedia;
-    private RecyclerView.LayoutManager layoutManager;
+    private LinearLayoutManager layoutManager;
 
     private FirebaseRecyclerOptions<Doggopedia> options;
     private FirebaseRecyclerAdapter adapter;
 
+    private FirebaseAuth mAuth;
     private FirebaseDatabase Db;
     private DatabaseReference doggopedia;
 
@@ -43,16 +48,39 @@ public class DoggopediaMenu extends AppCompatActivity implements View.OnClickLis
         if(getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), AddDoggopedia.class);
+                startActivity(i);
+            }
+        });
+
+        mAuth = FirebaseAuth.getInstance();
         Db = FirebaseDatabase.getInstance();
         doggopedia = Db.getReference("Doggopedia");
 
+        fab.hide();
+
+        if(mAuth.getCurrentUser().getUid().equalsIgnoreCase("tk3uoqdHIwgPQruwgqYyWvx0pZj2")){
+
+            fab.show();
+        }
+
         recyclerDoggopedia = findViewById(R.id.recDoggopediaMenuList);
+
+        layoutManager = new LinearLayoutManager(getBaseContext());
+
+        recyclerDoggopedia.setLayoutManager(layoutManager);
+
 
         loadDP();
     }
 
 
-    private void loadDP() {
+    private void loadDP( ) {
+
 
         options = new FirebaseRecyclerOptions.Builder<Doggopedia>()
                 .setQuery(doggopedia,Doggopedia.class)
@@ -96,9 +124,34 @@ public class DoggopediaMenu extends AppCompatActivity implements View.OnClickLis
             }
 
         };
+
         recyclerDoggopedia.setAdapter(adapter);
-        layoutManager = new LinearLayoutManager(getBaseContext());
-        recyclerDoggopedia.setLayoutManager(layoutManager);
+    }
+
+    // create an action bar button
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.sorting_doggopedia_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.Sort1ButtonDoggopedia) {
+            Toast.makeText(DoggopediaMenu.this, "Sort 1", Toast.LENGTH_SHORT).show();
+
+
+        } else if (id == R.id.Sort2ButtonDoggopedia) {
+            Toast.makeText(DoggopediaMenu.this, "Sort 2", Toast.LENGTH_SHORT).show();
+
+        } else if (id == R.id.Sort3ButtonDoggopedia) {
+            Toast.makeText(DoggopediaMenu.this, "Sort 3", Toast.LENGTH_SHORT).show();
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

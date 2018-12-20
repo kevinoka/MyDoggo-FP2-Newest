@@ -222,7 +222,7 @@
             android:label="@string/title_activity_add_adoption"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddDogopedia"
+            android:name=".AddDoggopedia"
             android:label="@string/title_activity_add_dogopedia"
             android:theme="@style/AppTheme">
             <meta-data

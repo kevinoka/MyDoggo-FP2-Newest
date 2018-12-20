@@ -4,21 +4,19 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.Selection;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,121 +26,76 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.maddoggo.mydoggoapp.Model.SaleDog;
+import com.maddoggo.mydoggoapp.Model.Doggopedia;
 import com.squareup.picasso.Picasso;
 
 import java.util.UUID;
 
-import static com.maddoggo.mydoggoapp.R.string.rupiah_sell_posting_class;
-
-public class SellPosting extends AppCompatActivity {
+public class AddDoggopedia extends AppCompatActivity {
 
     FirebaseStorage storage;
     StorageReference storageRef;
 
-    ImageView imageView;
+    ImageView imageAddDoggopedia;
 
-    private FirebaseAuth mAuth;
     private FirebaseDatabase Db;
-    private DatabaseReference saleDog;
-    private DatabaseReference saleDogByUser;
+    private DatabaseReference doggopedia;
 
-    private SaleDog saleDogIn;
+    private Doggopedia doggopediaIn;
 
-    private EditText editNameSellPosting, editPriceSellPosting, editLocationSellPosting, editDescSellPosting, editPhoneSellPosting;
-
+    private EditText typeAddDoggopedia, descAddDoggopedia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sell_posting);
+        setContentView(R.layout.activity_add_doggopedia);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if(getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
 
         //Init Storage --> For the dog picture
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-        mAuth = FirebaseAuth.getInstance();
         Db = FirebaseDatabase.getInstance();
-        saleDog = Db.getReference("SaleDogList");
-        saleDogByUser = Db.getReference("SaleDogUserList");
+        doggopedia = Db.getReference("Doggopedia");
 
-        saleDogIn = new SaleDog() ;
+        doggopediaIn = new Doggopedia();
 
-        editNameSellPosting = findViewById(R.id.EditNameSellPosting);
-        editPriceSellPosting = findViewById(R.id.EditPriceSellPosting);
-        editLocationSellPosting = findViewById(R.id.EditLocationSellPosting);
-        editDescSellPosting = findViewById(R.id.EditDescSellPosting);
-        editPhoneSellPosting = findViewById(R.id.EditPhoneSellPosting);
-
-        imageView = findViewById(R.id.ImageSellPosting);
-
-        editPriceSellPosting.setText(rupiah_sell_posting_class);
-        Selection.setSelection(editPriceSellPosting.getText(), editPriceSellPosting.getText().length());
-
-
-        editPriceSellPosting.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(!s.toString().startsWith("Rp")){
-                    editPriceSellPosting.setText("Rp");
-                    Selection.setSelection(editPriceSellPosting.getText(), editPriceSellPosting.getText().length());
-
-                }
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
+        imageAddDoggopedia = findViewById(R.id.ImageAddDoggopedia);
+        typeAddDoggopedia = findViewById(R.id.TypeAddDoggopedia);
+        descAddDoggopedia = findViewById(R.id.DescAddDoggopedia);
     }
 
-    private void SaveSellDog() {
+    private void SaveNewDoggopedia() {
 
-        saleDog.addListenerForSingleValueEvent(new ValueEventListener() {
+        doggopedia.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                long no = dataSnapshot.getChildrenCount();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long num = dataSnapshot.getChildrenCount();
 
+                doggopediaIn.setDogType(typeAddDoggopedia.getText().toString());
+                doggopediaIn.setDogDesc(descAddDoggopedia.getText().toString());
+                doggopediaIn.setDogId("Doggo"+num);
 
-                saleDogIn.setDogName(editNameSellPosting.getText().toString());
-                saleDogIn.setPrice(editPriceSellPosting.getText().toString());
-                saleDogIn.setSellerLocation(editLocationSellPosting.getText().toString());
-                saleDogIn.setDogDesc(editDescSellPosting.getText().toString());
-                saleDogIn.setPhoneNumber(editPhoneSellPosting.getText().toString());
-
-                saleDogIn.setOwner(mAuth.getCurrentUser().getUid());
-
-                saleDog.child("SaleDog"+no).setValue(saleDogIn);
-
-                saleDogByUser.child(mAuth.getCurrentUser().getUid()).child("SaleDog"+no).setValue(true);
+                doggopedia.child("Doggo"+num).setValue(doggopediaIn);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
-
-
     }
 
     // create an action bar button
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.mymenu, menu);
+        getMenuInflater().inflate(R.menu.add_doggopedia_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -151,10 +104,10 @@ public class SellPosting extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.mybutton) {
-            SaveSellDog();
-            Intent i = new Intent(getApplicationContext(), BuyOrSellMenu.class);
-            startActivity(i);
+        if (id == R.id.save_new_doggopedia_button) {
+            SaveNewDoggopedia();
+            /* Intent i = new Intent(getApplicationContext(), AdoptionMenu.class);
+            startActivity(i);*/
             this.finish();
 
         }
@@ -181,7 +134,7 @@ public class SellPosting extends AppCompatActivity {
                 progressDialog.show();
 
                 String imageName = UUID.randomUUID().toString(); //random new image name to upload
-                final StorageReference imageFolder = storageRef.child("buysell/"+imageName);
+                final StorageReference imageFolder = storageRef.child("doggopedia/"+imageName);
                 imageFolder.putFile(saveUri)
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
@@ -191,13 +144,13 @@ public class SellPosting extends AppCompatActivity {
                                 imageFolder.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        saleDogIn.setSellDogImage(uri.toString());
+                                        doggopediaIn.setDogPict(uri.toString());
                                         Toast.makeText(getBaseContext(), "Image was uploaded", Toast.LENGTH_SHORT).show();
                                         progressDialog.dismiss();
 
                                         Picasso.with(getBaseContext())
-                                                .load(saleDogIn.getSellDogImage())
-                                                .into(imageView);
+                                                .load(doggopediaIn.getDogPict())
+                                                .into(imageAddDoggopedia);
 
                                     }
                                 });
@@ -213,5 +166,4 @@ public class SellPosting extends AppCompatActivity {
             }
         }
     }
-
 }
