@@ -1,8 +1,10 @@
 package com.maddoggo.mydoggoapp.Model;
 
 
-public class Adoption {
-    private String dogName, dogDesc, dogAge, dogType, dogPict, dogId;
+import java.io.Serializable;
+
+public class Adoption implements Serializable {
+    private String dogName, dogDesc, dogAge, dogType, dogPict, dogId, phoneNum, location;
 
     public Adoption(){
         this.dogName = " ";
@@ -11,15 +13,19 @@ public class Adoption {
         this.dogType = " ";
         this.dogPict = " ";
         this.dogId = " ";
+        this.phoneNum = " ";
+        this.location = " ";
     }
 
-    public Adoption(String dogName, String dogDesc, String dogAge, String dogType, String dogPict, String dogId) {
+    public Adoption(String dogName, String dogDesc, String dogAge, String dogType, String dogPict, String dogId, String phoneNum, String location) {
         this.dogName = dogName;
         this.dogDesc = dogDesc;
         this.dogAge = dogAge;
         this.dogType = dogType;
         this.dogPict = dogPict;
         this.dogId = dogId;
+        this.phoneNum = phoneNum;
+        this.location = location;
 
     }
 
@@ -69,5 +75,21 @@ public class Adoption {
 
     public void setDogId(String dogId) {
         this.dogId = dogId;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

@@ -15,6 +15,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 public class BreedingResult extends AppCompatActivity {
 
     private FirebaseDatabase Db;
@@ -29,8 +31,8 @@ public class BreedingResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breeding_result);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Db = FirebaseDatabase.getInstance();
         dogBreedings = Db.getReference("DogBreeding");
@@ -61,10 +63,10 @@ public class BreedingResult extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    mBreedDogMatch.setText(dataSnapshot.child("Name").getValue().toString());
+                    mBreedDogMatch.setText(Objects.requireNonNull(dataSnapshot.child("Name").getValue()).toString());
 
                     Picasso.with(getBaseContext())
-                            .load(dataSnapshot.child("DogPic").getValue().toString())
+                            .load(Objects.requireNonNull(dataSnapshot.child("DogPic").getValue()).toString())
                             .into(dogBreedImage);
 
                     //Toast.makeText(getBaseContext(), dataSnapshot.getValue().toString(), Toast.LENGTH_SHORT).show();

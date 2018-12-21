@@ -191,8 +191,8 @@ public class Home extends AppCompatActivity
     private void logOut() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Confirm");
-        builder.setMessage("Are you sure?");
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout?");
 
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 

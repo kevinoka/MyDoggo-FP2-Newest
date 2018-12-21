@@ -57,6 +57,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:layout_marginTop="10dp"
                         android:text="@string/adoption_menu_title" />
@@ -100,6 +101,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:layout_marginTop="10dp"
                         android:text="@string/buy_sell_menu_title" />
@@ -151,6 +153,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:layout_marginTop="10dp"
                         android:text="@string/dog_breeding_menu_title" />
@@ -194,6 +197,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:textAlignment="center"
                         android:layout_marginTop="10dp"
@@ -247,6 +251,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:layout_marginTop="10dp"
                         android:text="@string/consultation_menu_title" />
@@ -290,6 +295,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:layout_marginTop="10dp"
                         android:text="@string/doggopedia_menu_title" />
@@ -343,6 +349,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
+                        android:textColor="@android:color/black"
                         android:textAlignment="center"
                         android:layout_marginTop="5dp"
                         android:text="@string/location_info_menu_title" />

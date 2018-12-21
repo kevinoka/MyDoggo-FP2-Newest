@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".LostPage">
 
     <android.support.design.widget.AppBarLayout
@@ -76,27 +77,50 @@
                 >
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dog Type:"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="12dp"
+                    android:textSize="14sp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    />
+
+                <TextView
                     android:id="@+id/LostDogType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dog Type"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
-                    android:layout_marginTop="12dp"
-                    android:textSize="25sp"
-                    android:padding="12dp"
+                    android:layout_marginTop="2dp"
+                    android:textSize="16sp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
                     />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description:"
+                    android:layout_marginTop="10dp"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    />
 
                 <TextView
                     android:id="@+id/LostDogChara"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dog_sell_description1"
-                    android:lineSpacingMultiplier="1.5"
-                    android:layout_marginTop="12dp"
-                    android:textSize="15sp"
-                    android:padding="12dp"
+                    android:textSize="16sp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@android:color/black"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
                     />
 
                 <TextView
@@ -104,10 +128,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Last seen"
-                    android:lineSpacingMultiplier="1.5"
-                    android:layout_marginTop="12dp"
-                    android:textSize="15sp"
-                    android:padding="12dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingTop="4dp"
                     />
 
                 <TextView
@@ -115,10 +141,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phone Number: (0361) 111 111"
-                    android:lineSpacingMultiplier="1.5"
-                    android:layout_marginTop="12dp"
-                    android:textSize="15sp"
-                    android:padding="12dp"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="6dp"
                     />
 
             </LinearLayout>
@@ -140,7 +168,7 @@
             app:fabMenu="@menu/fab_sub_menu"
             app:miniFabBackgroundTint="@android:color/white"
             app:miniFabDrawableTint="@android:color/black"
-            app:miniFabTitleTextColor="#F50057" />
+            app:miniFabTitleTextColor="#3078C6" />
     </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

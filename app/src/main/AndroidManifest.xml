@@ -188,11 +188,19 @@
         <activity
             android:name=".BreedingResult"
             android:label="@string/title_activity_breeding_result"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maddoggo.mydoggoapp.BreedingMenu" />
+        </activity>
         <activity
             android:name=".ConsultationResult"
             android:label="@string/title_activity_consultation_result"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maddoggo.mydoggoapp.ConsultationMenu" />
+        </activity>
         <activity
             android:name=".MyPost"
             android:label="@string/title_activity_my_post"
@@ -223,8 +231,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddDoggopedia"
-            android:label="@string/title_activity_add_dogopedia"
-            android:theme="@style/AppTheme">
+            android:label="@string/title_activity_add_doggopedia"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.maddoggo.mydoggoapp.DoggopediaMenu" />

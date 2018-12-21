@@ -78,13 +78,6 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
                 holder.AdoptDogType.setText(model.getDogType());
                 holder.AdoptDogAge.setText(model.getDogAge());
                 holder.AdoptDogDesc.setText(model.getDogDesc());
-                holder.adoptNowButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(getApplicationContext(), AdoptNow.class);
-                        startActivity(i);
-                    }
-                });
 
                 Picasso.with(getBaseContext())
                         .load(model.getDogPict())
@@ -98,6 +91,17 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
                        /* Intent i = new Intent(view.getContext(), FavoriteAdoption.class);
                         i.putExtra("AdoptionFavClass", (Serializable) clickItem);
                         startActivity(i);*/
+                    }
+                });
+
+                holder.adoptNowButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                       /* Intent i = new Intent(getApplicationContext(), AdoptNow.class);
+                        startActivity(i);*/
+                        Intent i = new Intent(view.getContext(), AdoptNow.class);
+                        i.putExtra("AdoptionClass", clickItem);
+                        startActivity(i);
                     }
                 });
 

@@ -7,31 +7,6 @@
     android:padding="1dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--
-    <RelativeLayout
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp" >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Posted by"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/BSUserName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="Kevin Oka"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            />
-
-    </RelativeLayout>
-     -->
-
     <android.support.v7.widget.CardView
         android:id="@+id/BSCard"
         android:foreground="?android:attr/selectableItemBackground"
@@ -47,39 +22,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
+            <ImageView
+                android:contentDescription="dog image"
+                android:id="@+id/BSDogImage"
+                android:src="@drawable/dog_pic1"
+                android:layout_marginBottom="70dp"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
             <ImageButton
                 android:contentDescription="@string/lost_dog_item_edit_button"
                 android:id="@+id/SaleDogPostEditButton"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:paddingStart="12dp"
+                android:padding="8dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
-                style="@style/Widget.MaterialComponents.Button.Icon"
-                app:srcCompat="@drawable/ic_edit_white_24dp"
+                android:backgroundTint="@color/colorPrimary"
+                app:srcCompat="@drawable/ic_action_edit_black"
                 />
 
             <ImageButton
                 android:contentDescription="@string/sale_dog_item_delete_button"
                 android:id="@+id/SaleDogPostDeleteButton"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:paddingStart="12dp"
+                android:padding="8dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="65dp"
-                style="@style/Widget.MaterialComponents.Button.Icon"
-                app:srcCompat="@drawable/ic_delete_button_white"
+                android:layout_marginEnd="56dp"
+                android:backgroundTint="@color/colorPrimary"
+                app:srcCompat="@drawable/ic_action_delete_black"
                 />
-
-            <ImageView
-                android:contentDescription="dog image"
-                android:id="@+id/BSDogImage"
-                android:layout_marginBottom="70dp"
-                android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
 
             <TextView
                 android:text="TEST"

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AdoptNow"
     tools:showIn="@layout/activity_adopt_now">
@@ -19,13 +20,93 @@
         />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="265dp"
+        android:textSize="14sp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        />
+
+    <TextView
+        android:id="@+id/AdoptNowName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dog name"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="280dp"
+        android:textSize="16sp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:layout_marginBottom="6dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dog type:"
+        android:layout_marginTop="310dp"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        />
+
+    <TextView
+        android:id="@+id/AdoptNowType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Doggo"
+        android:layout_marginTop="315dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:padding="12dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Age:"
+        android:layout_marginTop="355dp"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        />
+
+    <TextView
+        android:id="@+id/AdoptNowAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2 years old"
+        android:layout_marginTop="360dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:padding="12dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description:"
+        android:layout_marginTop="400dp"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        />
+
+    <TextView
         android:id="@+id/AdoptNowDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dog_sell_description1"
-        android:lineSpacingMultiplier="1.5"
-        android:layout_marginTop="250dp"
-        android:textSize="15sp"
+        android:text="He is a little dog"
+        android:layout_marginTop="405dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
         android:padding="12dp"
         />
 
@@ -34,9 +115,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Location: Dog Shelter"
-        android:lineSpacingMultiplier="1.5"
-        android:layout_marginTop="400dp"
-        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="435dp"
+        android:textSize="16sp"
         android:padding="12dp"
         />
 
@@ -45,9 +126,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone Number: (0361) 123 456"
-        android:lineSpacingMultiplier="1.5"
-        android:layout_marginTop="440dp"
-        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="465dp"
+        android:textSize="16sp"
         android:padding="12dp"
         />
 

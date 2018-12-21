@@ -7,30 +7,6 @@
     android:padding="1dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--
-    <RelativeLayout
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp" >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Posted by"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/BSUserName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="Kevin Oka"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            />
-
-    </RelativeLayout>
-     -->
 
     <android.support.v7.widget.CardView
         android:id="@+id/BSCard"

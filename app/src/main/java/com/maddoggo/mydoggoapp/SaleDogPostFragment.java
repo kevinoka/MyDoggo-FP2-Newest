@@ -123,8 +123,8 @@ public class SaleDogPostFragment extends Fragment implements View.OnClickListene
                         //adapter.getRef(position).removeValue();
                         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                        builder.setTitle("Confirm");
-                        builder.setMessage("Are you sure?");
+                        builder.setTitle("Delete");
+                        builder.setMessage("Are you sure you want to delete it?");
 
                         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 

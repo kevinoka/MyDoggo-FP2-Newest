@@ -128,7 +128,7 @@
     <string name="map_desc">Map Icon</string>
     <string name="buy_sell_desc">Buy or Sell Icon</string>
     <string name="dog_image">Dog Image</string>
-    <string name="name_of_your_dog">Name of your dog</string>
+    <string name="name_of_your_dog">Dog name</string>
     <string name="uploaded_image">Uploaded image</string>
     <string name="dog_type_last_found">Dog type</string>
     <string name="last_seen_location_LF">Last seen location</string>
@@ -149,8 +149,10 @@
     <string name="title_activity_sale_dog_edit">Sale Dog Edit</string>
     <string name="title_activity_add_adoption">Add New Adoption</string>
     <string name="sale_dog_item_delete_button">Delete button</string>
-    <string name="title_activity_add_dogopedia">AddDogopedia</string>
+    <string name="title_activity_add_doggopedia">Add Doggopedia</string>
     <string name="dog_image_for_adoption">Dog image for adoption</string>
     <string name="dog_picture_fav_adoption">Dog picture</string>
+    <string name="add_your_picture">Add your picture</string>
+    <string name="descr_overflow_button">Overflow button</string>
 
 </resources>

@@ -44,7 +44,7 @@ public class AddAdoption extends AppCompatActivity {
 
     private Adoption dogAdoptionIn;
 
-    private EditText nameAddAdoption, ageAddAdoption, typeAddAdoption, descAddAdoption;
+    private EditText nameAddAdoption, ageAddAdoption, typeAddAdoption, descAddAdoption, phoneAddAdoption, locationAddAdoption;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +76,8 @@ public class AddAdoption extends AppCompatActivity {
         ageAddAdoption = findViewById(R.id.AgeAddAdoption);
         typeAddAdoption = findViewById(R.id.TypeAddAdoption);
         descAddAdoption = findViewById(R.id.DescAddAdoption);
+        phoneAddAdoption = findViewById(R.id.PhoneAddAdoption);
+        locationAddAdoption = findViewById(R.id.LocationAddAdoption);
         imageAddAdoption = findViewById(R.id.ImageAddAdoption);
     }
 
@@ -90,6 +92,8 @@ public class AddAdoption extends AppCompatActivity {
                 dogAdoptionIn.setDogAge(ageAddAdoption.getText().toString());
                 dogAdoptionIn.setDogType(typeAddAdoption.getText().toString());
                 dogAdoptionIn.setDogDesc(descAddAdoption.getText().toString());
+                dogAdoptionIn.setPhoneNum(phoneAddAdoption.getText().toString());
+                dogAdoptionIn.setLocation(locationAddAdoption.getText().toString());
                 dogAdoptionIn.setDogId("AdoptDog"+num);
 
                 dogAdoption.child("AdoptDog"+num).setValue(dogAdoptionIn);

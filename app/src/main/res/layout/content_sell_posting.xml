@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="10dp"
-    android:paddingRight="10dp"
-    android:paddingLeft="10dp"
+    android:padding="15dp"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".SellPosting"
@@ -16,23 +14,41 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:paddingBottom="25dp">
 
-        <ImageView
-            android:contentDescription="@string/choose_image"
-            android:onClick="imageClicked"
-            android:id="@+id/ImageSellPosting"
-            android:layout_width="match_parent"
-            android:layout_height="190dp"
-            android:background="@color/colorGreyLine"
-            app:srcCompat="@drawable/ic_add_a_photo_white" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:contentDescription="@string/choose_image"
+                android:onClick="imageClicked"
+                android:id="@+id/ImageSellPosting"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="60dp"
+                android:background="@color/colorGreyLine"
+                app:srcCompat="@drawable/ic_add_a_photo_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="130dp"
+                android:textAlignment="center"
+                android:textStyle="normal"
+                android:text="@string/add_your_picture"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"/>
+
+        </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/name_of_your_dog"
-            android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
         <EditText
@@ -46,7 +62,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/price"
-            android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
         <EditText
@@ -60,7 +75,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Location"
-            android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
         <EditText
@@ -74,7 +88,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description"
-            android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
         <EditText
@@ -88,7 +101,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Phone number"
-            android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
         <EditText
