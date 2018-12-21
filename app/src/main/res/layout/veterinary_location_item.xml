@@ -29,8 +29,9 @@
                 android:textAlignment="viewStart"
                 android:layout_gravity="start"
                 android:text="Veterinary"
+                android:textColor="@android:color/black"
                 android:textSize="20sp"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 />
 
             <TextView
@@ -52,9 +53,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="8dp"
-                style="@style/Widget.MaterialComponents.Button.Icon"
-                android:src="@drawable/ic_map_black_24dp"/>
+                android:padding="5dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:src="@drawable/ic_map_black"/>
 
         </RelativeLayout>
 

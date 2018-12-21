@@ -49,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:textColor="@android:color/black"
             android:text="@string/name_of_your_dog"/>
 
         <EditText
@@ -61,6 +62,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
             android:text="Dog age"/>
 
         <EditText
@@ -73,6 +75,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
             android:text="Dog type"/>
 
         <EditText
@@ -85,6 +88,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
             android:text="Description"/>
 
         <EditText
@@ -97,6 +101,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
             android:text="Location"/>
 
         <EditText
@@ -109,6 +114,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
             android:text="Phone number"/>
 
         <EditText
