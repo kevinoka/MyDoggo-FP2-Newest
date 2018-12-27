@@ -63,7 +63,7 @@ public class DoggopediaMenu extends AppCompatActivity implements View.OnClickLis
 
         fab.hide();
 
-        if(mAuth.getCurrentUser().getUid().equalsIgnoreCase("tk3uoqdHIwgPQruwgqYyWvx0pZj2")){
+        if(mAuth.getCurrentUser().getUid().equalsIgnoreCase("F5WxV4kxG2ahkE6Fbw9919dEdF82")){
 
             fab.show();
         }
@@ -114,10 +114,7 @@ public class DoggopediaMenu extends AppCompatActivity implements View.OnClickLis
                 holder.setDoggopediaClickListener(new DoggopediaClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        //Intent i = new Intent(getApplicationContext(), BuyPage.class);
-                        //startActivity(i);
-                        //finish();
-                        //Toast.makeText(BuyOrSellMenu.this, "Niceeee", Toast.LENGTH_SHORT).show();
+
                     }
                 });
 
@@ -126,32 +123,6 @@ public class DoggopediaMenu extends AppCompatActivity implements View.OnClickLis
         };
 
         recyclerDoggopedia.setAdapter(adapter);
-    }
-
-    // create an action bar button
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.sorting_doggopedia_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    // handle button activities
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.Sort1ButtonDoggopedia) {
-            Toast.makeText(DoggopediaMenu.this, "Sort 1", Toast.LENGTH_SHORT).show();
-
-
-        } else if (id == R.id.Sort2ButtonDoggopedia) {
-            Toast.makeText(DoggopediaMenu.this, "Sort 2", Toast.LENGTH_SHORT).show();
-
-        } else if (id == R.id.Sort3ButtonDoggopedia) {
-            Toast.makeText(DoggopediaMenu.this, "Sort 3", Toast.LENGTH_SHORT).show();
-
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

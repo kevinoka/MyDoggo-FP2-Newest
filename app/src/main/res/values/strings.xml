@@ -154,5 +154,10 @@
     <string name="dog_picture_fav_adoption">Dog picture</string>
     <string name="add_your_picture">Add your picture</string>
     <string name="descr_overflow_button">Overflow button</string>
+    <string name="description_hint">Description</string>
+    <string name="location_hint">Location</string>
+    <string name="name_hint">Name</string>
+    <string name="map_button">Map button</string>
+    <string name="veterinary_text">Veterinary</string>
 
 </resources>

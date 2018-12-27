@@ -90,10 +90,7 @@ public class PetShopLocFragment extends Fragment implements View.OnClickListener
                 holder.setPetShopLocClickListener(new PetShopLocClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        //Intent i = new Intent(getApplicationContext(), BuyPage.class);
-                        //startActivity(i);
-                        //finish();
-                        //Toast.makeText(BuyOrSellMenu.this, "Niceeee", Toast.LENGTH_SHORT).show();
+
                     }
                 });
 

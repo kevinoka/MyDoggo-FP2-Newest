@@ -59,8 +59,6 @@ public class LostFoundMenu extends AppCompatActivity {
 
         loadLFM();
 
-
-
     }
 
     private void loadLFM() {
@@ -70,7 +68,6 @@ public class LostFoundMenu extends AppCompatActivity {
                 .build();
 
         adapter = new FirebaseRecyclerAdapter<LostFoundDog, LostFoundViewHolder>(options) {
-
 
 
             @NonNull
@@ -102,7 +99,6 @@ public class LostFoundMenu extends AppCompatActivity {
                         Intent i = new Intent(view.getContext(), LostPage.class);
                         i.putExtra("LostFoundDogClass", clickItem);
                         startActivity(i);
-                        //Toast.makeText(BuyOrSellMenu.this, "Niceeee", Toast.LENGTH_SHORT).show();
                     }
                 });
 

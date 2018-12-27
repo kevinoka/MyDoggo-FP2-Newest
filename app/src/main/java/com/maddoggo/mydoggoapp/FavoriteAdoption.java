@@ -36,7 +36,6 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
     private FirebaseAuth mAuth;
     private FirebaseDatabase Db;
     private DatabaseReference adoption;
-    private DatabaseReference fav;
     private DatabaseReference favAdoptionList;
 
 
@@ -52,7 +51,6 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
         mAuth = FirebaseAuth.getInstance();
         Db = FirebaseDatabase.getInstance();
         adoption = Db.getReference("Adoption");
-        //fav = Db.getReference("FavAdoption");
         favAdoptionList = Db.getReference("FavAdoptionUserList");
 
         recyclerFavoriteAdoption = findViewById(R.id.recFavoriteAdoptionList);
@@ -88,17 +86,13 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
                 holder.FavAdoptionCard.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                       /* Intent i = new Intent(view.getContext(), FavoriteAdoption.class);
-                        i.putExtra("AdoptionFavClass", (Serializable) clickItem);
-                        startActivity(i);*/
+
                     }
                 });
 
                 holder.adoptNowButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                       /* Intent i = new Intent(getApplicationContext(), AdoptNow.class);
-                        startActivity(i);*/
                         Intent i = new Intent(view.getContext(), AdoptNow.class);
                         i.putExtra("AdoptionClass", clickItem);
                         startActivity(i);
@@ -127,36 +121,6 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
         recyclerFavoriteAdoption.setAdapter(adapter);
         layoutManager = new LinearLayoutManager(getBaseContext());
         recyclerFavoriteAdoption.setLayoutManager(layoutManager);
-
-
-        /*mDogName = findViewById(R.id.AdoptDogName);
-        mDogType = findViewById(R.id.AdoptDogType);
-        mDogDesc = findViewById(R.id.AdoptDogDesc);
-        mDogAge = findViewById(R.id.AdoptDogAge);
-
-        mDogPict = findViewById(R.id.AdoptDogPict);
-
-        fav.child("FavDog1").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Adoption item = dataSnapshot.getValue(Adoption.class);
-
-                mDogName.setText(item.getDogName());
-                mDogType.setText(item.getDogType());
-                mDogDesc.setText(item.getDogDesc());
-                mDogAge.setText(item.getDogAge());
-
-                Picasso.with(getBaseContext())
-                        .load(item.getDogPict())
-                        .into(mDogPict);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
 
 
     }

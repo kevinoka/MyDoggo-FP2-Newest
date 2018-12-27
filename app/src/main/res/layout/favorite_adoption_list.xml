@@ -32,8 +32,7 @@
                 android:layout_height="200dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/dog1" />
+                android:layout_alignParentTop="true" />
 
             <TextView
                 android:id="@+id/AdoptDogName"
@@ -41,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="193dp"
                 android:padding="15dp"
-                android:text="Brown Dog"
+                android:text="@string/dog_sell_title1"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
@@ -52,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="222dp"
                 android:padding="15dp"
-                android:text="Pitbull"
+                android:text="@string/dog_sell_title1"
                 android:textSize="14sp"
                 android:textColor="@android:color/black"/>
 
@@ -72,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="263dp"
                 android:padding="15dp"
-                android:text="Brief Description"
+                android:text="@string/description_hint"
                 android:textSize="14sp"
                 android:textColor="@android:color/black"/>
 
@@ -85,7 +84,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="5dp"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:text="Adopt now"/>
+                android:text="@string/title_activity_adopt_now"/>
 
         </RelativeLayout>
 

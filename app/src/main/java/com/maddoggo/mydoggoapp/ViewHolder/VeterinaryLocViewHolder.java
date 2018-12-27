@@ -3,6 +3,7 @@ package com.maddoggo.mydoggoapp.ViewHolder;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.maddoggo.mydoggoapp.Interface.VeterinaryLocClickListener;
@@ -12,6 +13,8 @@ public class VeterinaryLocViewHolder extends RecyclerView.ViewHolder implements 
 
     public CardView mVetLocCard;
     public TextView mVeterinaryNameLocation, mVeterinaryLocLocation;
+    public ImageButton mVetLocMapButton;
+
     private VeterinaryLocClickListener veterinaryLocClickListener;
 
     public VeterinaryLocViewHolder(View itemView) {
@@ -20,6 +23,7 @@ public class VeterinaryLocViewHolder extends RecyclerView.ViewHolder implements 
         mVetLocCard = itemView.findViewById(R.id.VetLocCard);
         mVeterinaryNameLocation = itemView.findViewById(R.id.VeterinaryNameLocation);
         mVeterinaryLocLocation = itemView.findViewById(R.id.VeterinaryLocLocation);
+        mVetLocMapButton = itemView.findViewById(R.id.VetLocMapButton);
 
         itemView.setOnClickListener(this);
     }

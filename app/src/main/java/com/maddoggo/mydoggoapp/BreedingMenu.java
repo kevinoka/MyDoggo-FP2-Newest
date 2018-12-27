@@ -26,7 +26,7 @@ public class BreedingMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breeding_menu);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if(getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -93,8 +93,6 @@ public class BreedingMenu extends AppCompatActivity {
             }
         });
 
-
-
         Button btn = findViewById(R.id.buttonBreeding);
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +115,5 @@ public class BreedingMenu extends AppCompatActivity {
             }
         });
     }
-
-
 
 }

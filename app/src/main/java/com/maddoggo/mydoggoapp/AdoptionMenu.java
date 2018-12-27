@@ -72,7 +72,7 @@ public class AdoptionMenu extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         fab2.hide();
 
-        if(mAuth.getCurrentUser().getUid().equalsIgnoreCase("tk3uoqdHIwgPQruwgqYyWvx0pZj2")){
+        if(mAuth.getCurrentUser().getUid().equalsIgnoreCase("F5WxV4kxG2ahkE6Fbw9919dEdF82")){
 
             fab2.show();
         }
@@ -80,7 +80,6 @@ public class AdoptionMenu extends AppCompatActivity {
 
         Db = FirebaseDatabase.getInstance();
         adoption = Db.getReference("Adoption");
-        //fav = Db.getReference("FavAdoption");
         favAdoptionList = Db.getReference("FavAdoptionUserList");
 
 
@@ -88,17 +87,13 @@ public class AdoptionMenu extends AppCompatActivity {
         rowItems = new ArrayList<Adoption>();
 
         arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems );
-        //String url = "https://firebasestorage.googleapis.com/v0/b/mydoggo-project.appspot.com/o/dog1.jpg?alt=media&token=b18c2264-ba92-415e-a80a-c1f7b82c9d1d";
-        //image_adoption.setImageResource();
-        //Glide.with(getApplicationContext()).load(url).into(image_adoption);
 
         adoption.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Adoption item  = new Adoption();
                 DataSnapshot ds = dataSnapshot;
-                //dataSnapshot.getChildren()
-                //for(DataSnapshot ds : dataSnapshot.getChildren()) {
+
                 item.setDogName(ds.child("dogName").getValue().toString());
                 item.setDogDesc(ds.child("dogDesc").getValue().toString());
                 item.setDogPict(ds.child("dogPict").getValue().toString());
@@ -108,7 +103,7 @@ public class AdoptionMenu extends AppCompatActivity {
 
                 rowItems.add(item);
                 arrayAdapter.notifyDataSetChanged();
-                //}
+
             }
 
             @Override
@@ -140,7 +135,7 @@ public class AdoptionMenu extends AppCompatActivity {
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
-                // this is the simplest way to delete an object from the Adapter (/AdapterView)
+                // this is the way to delete an object from the Adapter (/AdapterView)
                 Log.d("LIST", "removed object!");
                 rowItems.remove(0);
                 arrayAdapter.notifyDataSetChanged();
@@ -148,15 +143,13 @@ public class AdoptionMenu extends AppCompatActivity {
 
             @Override
             public void onLeftCardExit(Object dataObject) {
-                //Do something on the left!
-                //You also have access to the original object.
-                //If you want to use it just cast it (String) dataObject
+                //Swipe left to deny the dog option!
                 Toast.makeText(AdoptionMenu.this, "Nope", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onRightCardExit(final Object dataObject) {
-                //Toast.makeText(AdoptionMenu.this, "Right", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdoptionMenu.this, "Liked", Toast.LENGTH_SHORT).show();
                 final Adoption obj = (Adoption) dataObject;
 
                 favAdoptionList.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -171,20 +164,7 @@ public class AdoptionMenu extends AppCompatActivity {
 
                     }
                 });
-/*
-                fav.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        long no = dataSnapshot.getChildrenCount();
-                        //fav.child("FavDog"+no).setValue(obj);
-                        favAdoptionList.child("FavDog"+no).setValue(true);
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });*/
             }
 
             @Override
@@ -201,7 +181,7 @@ public class AdoptionMenu extends AppCompatActivity {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
-                Toast.makeText(AdoptionMenu.this, "Item Clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(AdoptionMenu.this, "Item Clicked", Toast.LENGTH_SHORT).show();
             }
         });
 

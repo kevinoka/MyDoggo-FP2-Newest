@@ -32,70 +32,65 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/name_of_your_dog"
-            android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
         <EditText
             android:id="@+id/EditNameSaleDogEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name"
+            android:hint="@string/name_hint"
             android:inputType="text|textCapSentences"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/price"
-            android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
         <EditText
             android:id="@+id/EditPriceSaleDogEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Price"
+            android:hint="@string/price"
             android:inputType="number"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Location"
-            android:textSize="18sp"
+            android:text="@string/location_hint"
             android:textColor="@android:color/black"/>
 
         <EditText
             android:id="@+id/EditLocationSaleDogEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Location"
+            android:hint="@string/location_hint"
             android:inputType="text|textCapSentences"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Description"
-            android:textSize="18sp"
+            android:text="@string/description_hint"
             android:textColor="@android:color/black"/>
 
         <EditText
             android:id="@+id/EditDescSaleDogEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
+            android:hint="@string/description_hint"
             android:inputType="text|textCapSentences"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Phone number"
-            android:textSize="18sp"
+            android:text="@string/phone_number_LF"
             android:textColor="@android:color/black"/>
 
         <EditText
             android:id="@+id/EditPhoneSaleDogEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone number"
+            android:hint="@string/phone_number_LF"
             android:inputType="phone"/>
 
     </LinearLayout>

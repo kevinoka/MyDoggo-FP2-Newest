@@ -1,5 +1,7 @@
 package com.maddoggo.mydoggoapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -69,19 +71,25 @@ public class VeterinaryLocFragment extends Fragment implements View.OnClickListe
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull VeterinaryLocViewHolder holder, int position, @NonNull VetLocation model) {
+            protected void onBindViewHolder(@NonNull VeterinaryLocViewHolder holder, int position, @NonNull final VetLocation model) {
                 holder.mVeterinaryNameLocation.setText(model.getVetName());
                 holder.mVeterinaryLocLocation.setText(model.getVetLocation());
 
+                holder.mVetLocMapButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri gmmIntentUri = Uri.parse("geo:0,0?q= " + model.getVetMapLocation());
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        startActivity(mapIntent);
+                    }
+                });
 
                 final VetLocation clickItem = model;
                 holder.setVeterinaryLocClickListener(new VeterinaryLocClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        //Intent i = new Intent(getApplicationContext(), BuyPage.class);
-                        //startActivity(i);
-                        //finish();
-                        //Toast.makeText(BuyOrSellMenu.this, "Niceeee", Toast.LENGTH_SHORT).show();
+
                     }
                 });
 

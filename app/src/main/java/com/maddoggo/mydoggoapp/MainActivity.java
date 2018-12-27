@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         //init view
 
-        btnSignUp = (Button) findViewById(R.id.btnSignUp);
-        btnSignIn = (Button) findViewById(R.id.btnSignIn);
-        rootLayout = (RelativeLayout) findViewById(R.id.rootLayout);
+        btnSignUp = findViewById(R.id.btnSignUp);
+        btnSignIn = findViewById(R.id.btnSignIn);
+        rootLayout = findViewById(R.id.rootLayout);
 
         //event
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -227,6 +227,8 @@ public class MainActivity extends AppCompatActivity {
                                 user.setPassword(editPassword.getText().toString());
                                 user.setAddress("-");
                                 user.setBirthday("-");
+                                user.setAvatarUrl("-");
+                                user.setPhoneNumber("-");
 
                                 //use email as a key
                                 users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())

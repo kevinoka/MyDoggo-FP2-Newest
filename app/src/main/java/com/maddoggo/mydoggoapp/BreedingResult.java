@@ -30,7 +30,8 @@ public class BreedingResult extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breeding_result);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         if(getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -69,7 +70,6 @@ public class BreedingResult extends AppCompatActivity {
                             .load(Objects.requireNonNull(dataSnapshot.child("DogPic").getValue()).toString())
                             .into(dogBreedImage);
 
-                    //Toast.makeText(getBaseContext(), dataSnapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
 
                 }
                 else{

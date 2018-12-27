@@ -32,7 +32,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/name_of_your_dog"
-            android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
         <EditText
@@ -46,7 +45,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/dog_type_last_found"
-            android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
         <EditText
@@ -60,7 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/last_seen_location_LF"
-            android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
         <EditText
@@ -74,7 +71,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/dog_characteristics_LF"
-            android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
         <EditText
@@ -88,7 +84,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/phone_number_LF"
-            android:textSize="18sp"
             android:textColor="@android:color/black"/>
 
         <EditText
