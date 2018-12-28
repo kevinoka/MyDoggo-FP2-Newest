@@ -6,13 +6,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +39,8 @@ public class LostFoundEdit extends AppCompatActivity {
     FirebaseStorage storage;
     StorageReference storageRef;
 
+    LinearLayout rootLayoutLFE;
+
     ImageView imageView;
 
     private FirebaseAuth mAuth;
@@ -54,6 +59,8 @@ public class LostFoundEdit extends AppCompatActivity {
         setContentView(R.layout.activity_lost_found_edit);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if(getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Init Storage --> For the dog picture
         storage = FirebaseStorage.getInstance();
@@ -63,6 +70,8 @@ public class LostFoundEdit extends AppCompatActivity {
         Db = FirebaseDatabase.getInstance();
         lostFoundDog = Db.getReference("LostFoundList");
         lostFoundDogByUser = Db.getReference("LostFoundUserList");
+
+        rootLayoutLFE = findViewById(R.id.rootLayoutLFE);
 
         editLFDogName = findViewById(R.id.EditNameLFEdit);
         editLFDogTypeLF = findViewById(R.id.EditDogTypeLFEdit);
@@ -97,7 +106,6 @@ public class LostFoundEdit extends AppCompatActivity {
 
             }
         });
-
 
     }
 
@@ -136,8 +144,37 @@ public class LostFoundEdit extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.mybutton) {
-            SaveLFDog();
-            this.finish();
+
+            if(TextUtils.isEmpty(editLFDogName.getText().toString()))
+            {
+                Snackbar.make(rootLayoutLFE, "Dog name cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editLFDogTypeLF.getText().toString())){
+                Snackbar.make(rootLayoutLFE, "Dog type cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editLFDogLastSeen.getText().toString())){
+                Snackbar.make(rootLayoutLFE, "Last seen location cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editLFChara.getText().toString())){
+                Snackbar.make(rootLayoutLFE, "Dog characteristic cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editLFPhone.getText().toString())){
+                Snackbar.make(rootLayoutLFE, "Phone number cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else {
+                SaveLFDog();
+                this.finish();
+            }
         }
         return super.onOptionsItemSelected(item);
     }

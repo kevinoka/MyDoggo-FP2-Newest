@@ -1,4 +1,4 @@
-package com.maddoggo.mydoggoapp;
+package com.maddoggo.mydoggoapp.Fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -20,102 +20,108 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.maddoggo.mydoggoapp.Interface.SaleDogPostClickListener;
-import com.maddoggo.mydoggoapp.Model.SaleDog;
-import com.maddoggo.mydoggoapp.ViewHolder.SaleDogPostViewHolder;
+import com.maddoggo.mydoggoapp.Interface.LostDogPostClickListener;
+import com.maddoggo.mydoggoapp.LostFoundEdit;
+import com.maddoggo.mydoggoapp.LostPage;
+import com.maddoggo.mydoggoapp.Model.LostFoundDog;
+import com.maddoggo.mydoggoapp.R;
+import com.maddoggo.mydoggoapp.ViewHolder.LostDogPostViewHolder;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
-public class SaleDogPostFragment extends Fragment implements View.OnClickListener {
+public class LostDogPostFragment extends Fragment implements View.OnClickListener {
 
     View view;
-    private CardView BSCard;
-    private RecyclerView recyclerSaleDogPost;
+    private CardView LFCard;
+    private RecyclerView recyclerLostDogPost;
     private RecyclerView.LayoutManager layoutManager;
 
-    private FirebaseRecyclerOptions<SaleDog> options;
+    private FirebaseRecyclerOptions<LostFoundDog> options;
     private FirebaseRecyclerAdapter adapter;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase Db;
-    private DatabaseReference saleDog;
-    private DatabaseReference saleDogByUser;
+    private DatabaseReference lostFoundDog;
+    private DatabaseReference lostFoundDogByUser;
 
-    public SaleDogPostFragment() {
+    public LostDogPostFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.sale_dog_fragment, container,false);
-        recyclerSaleDogPost = view.findViewById(R.id.recSaleDogFragment);
+        view = inflater.inflate(R.layout.lost_dog_fragment, container,false);
+        recyclerLostDogPost = view.findViewById(R.id.recLostDogFragment);
 
         mAuth = FirebaseAuth.getInstance();
         Db = FirebaseDatabase.getInstance();
-        saleDog = Db.getReference("SaleDogList");
-        saleDogByUser = Db.getReference("SaleDogUserList");
+        lostFoundDog = Db.getReference("LostFoundList");
+        lostFoundDogByUser = Db.getReference("LostFoundUserList");
 
-        loadSDPostPerUser();
+        loadLDPostPerUser();
         return view;
     }
 
-    private void loadSDPostPerUser() {
+    private void loadLDPostPerUser() {
 
         //saleDogUserList --> nama database refrence kyk saleDog tapi arahnya ke table saleDogUserList di database
-        Query query = saleDogByUser.child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid().toString());
+        Query query = lostFoundDogByUser.child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid().toString());
 
         //ininya juga beda, cuma berubah jd setIndexedQuery
-        options = new FirebaseRecyclerOptions.Builder<SaleDog>()
-                .setIndexedQuery(query,saleDog,SaleDog.class)
+        options = new FirebaseRecyclerOptions.Builder<LostFoundDog>()
+                .setIndexedQuery(query,lostFoundDog,LostFoundDog.class)
                 .build();
 
-        adapter = new FirebaseRecyclerAdapter<SaleDog, SaleDogPostViewHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<LostFoundDog, LostDogPostViewHolder>(options) {
 
 
             @NonNull
             @Override
-            public SaleDogPostViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            public LostDogPostViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.sale_dog_item,viewGroup,false);
+                        .inflate(R.layout.lost_dog_item,viewGroup,false);
 
-                return new SaleDogPostViewHolder(view);
+                return new LostDogPostViewHolder(view);
 
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull SaleDogPostViewHolder holder, final int position, @NonNull final SaleDog model) {
-                //holder.BSUserName.setText(model.getOwner());
-                holder.BSDogName.setText(model.getDogName());
-                holder.BSDogPrice.setText(model.getPrice());
-                holder.BSDogPlace.setText(model.getSellerLocation());
+            protected void onBindViewHolder(@NonNull LostDogPostViewHolder holder, final int position, @NonNull final LostFoundDog model) {
+                holder.LFDogName.setText(model.getDogName());
+                holder.LFDogType.setText(model.getDogType());
+                holder.LFDogLast.setText(model.getDogLastSeen());
+                holder.LFDogChara.setText(model.getDogChara());
 
                 Picasso.with(getActivity())
-                        .load(model.getSellDogImage())
-                        .into(holder.BSDogImage);
+                        .load(model.getDogPict())
+                        .into(holder.LFDogPict);
 
-                //final SaleDog clickItem = model;
+                //final LostFoundDog clickItem = model;
 
-                holder.BSCard.setOnClickListener(new View.OnClickListener() {
+                holder.LFCard.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i = new Intent(view.getContext(), BuyPage.class);
-                        i.putExtra("SaleDogClass", model);
+                        Intent i = new Intent(view.getContext(), LostPage.class);
+                        i.putExtra("LostFoundDogClass", model);
                         startActivity(i);
+                        //Toast.makeText(BuyOrSellMenu.this, "Niceeee", Toast.LENGTH_SHORT).show();
                     }
                 });
 
-                holder.SaleDogPostEditButton.setOnClickListener(new View.OnClickListener() {
+                holder.LostDogPostEditButton.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(getContext(), SaleDogEdit.class);
-                        i.putExtra("SaleDogClass", model);
+                    public void onClick(View v) {
+
+                        //Toast.makeText(getContext(), model.getDogName(), Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getContext(), LostFoundEdit.class);
+                        i.putExtra("LostFoundDogClass", model);
                         i.putExtra("Key", adapter.getRef(position).getKey());
                         startActivity(i);
                     }
                 });
 
-                holder.SaleDogPostDeleteButton.setOnClickListener(new View.OnClickListener() {
+                holder.LostDogPostDeleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //lostFoundDog.child(adapter.getRef(position).getKey()).removeValue();
@@ -123,13 +129,13 @@ public class SaleDogPostFragment extends Fragment implements View.OnClickListene
                         //adapter.getRef(position).removeValue();
                         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                        builder.setTitle("Delete");
-                        builder.setMessage("Are you sure you want to delete it?");
+                        builder.setTitle("Confirm");
+                        builder.setMessage("Are you sure?");
 
                         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int which) {
-                                saleDog.child(adapter.getRef(position).getKey()).removeValue();
+                                lostFoundDog.child(adapter.getRef(position).getKey()).removeValue();
                                 builder.setMessage("Post Deleted");
                                 dialog.dismiss();
                             }
@@ -149,7 +155,7 @@ public class SaleDogPostFragment extends Fragment implements View.OnClickListene
 
                 });
 
-                holder.setSaleDogPostClickListener(new SaleDogPostClickListener() {
+                holder.setLostDogPostClickListener(new LostDogPostClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
@@ -159,14 +165,13 @@ public class SaleDogPostFragment extends Fragment implements View.OnClickListene
             }
 
         };
-        recyclerSaleDogPost.setAdapter(adapter);
+        recyclerLostDogPost.setAdapter(adapter);
         layoutManager = new LinearLayoutManager(getActivity());
-        recyclerSaleDogPost.setLayoutManager(layoutManager);
+        recyclerLostDogPost.setLayoutManager(layoutManager);
     }
 
-    @Override
     public void onClick(View v) {
-        Intent i = new Intent(getContext(), BuyPage.class);
+        Intent i = new Intent(getContext(), LostPage.class);
         startActivity(i);
     }
 

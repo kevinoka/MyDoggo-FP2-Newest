@@ -6,14 +6,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,6 +38,8 @@ public class AddDoggopedia extends AppCompatActivity {
 
     FirebaseStorage storage;
     StorageReference storageRef;
+
+    LinearLayout rootLayoutDP;
 
     ImageView imageAddDoggopedia;
 
@@ -65,6 +70,8 @@ public class AddDoggopedia extends AppCompatActivity {
         doggopedia = Db.getReference("Doggopedia");
 
         doggopediaIn = new Doggopedia();
+
+        rootLayoutDP = findViewById(R.id.rootLayoutDP);
 
         imageAddDoggopedia = findViewById(R.id.ImageAddDoggopedia);
         typeAddDoggopedia = findViewById(R.id.TypeAddDoggopedia);
@@ -105,10 +112,24 @@ public class AddDoggopedia extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.save_new_doggopedia_button) {
-            SaveNewDoggopedia();
-            /* Intent i = new Intent(getApplicationContext(), AdoptionMenu.class);
-            startActivity(i);*/
-            this.finish();
+
+            if(TextUtils.isEmpty(typeAddDoggopedia.getText().toString()))
+            {
+                Snackbar.make(rootLayoutDP, "Dog type cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(descAddDoggopedia.getText().toString())){
+                Snackbar.make(rootLayoutDP, "Dog description cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else {
+                SaveNewDoggopedia();
+                /* Intent i = new Intent(getApplicationContext(), AdoptionMenu.class);
+                startActivity(i);*/
+                this.finish();
+            }
 
         }
         return super.onOptionsItemSelected(item);

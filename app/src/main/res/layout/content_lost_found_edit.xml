@@ -13,6 +13,7 @@
     tools:showIn="@layout/activity_lost_found_edit">
 
     <LinearLayout
+        android:id="@+id/rootLayoutLFE"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

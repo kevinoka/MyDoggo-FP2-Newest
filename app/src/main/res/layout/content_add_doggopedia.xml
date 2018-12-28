@@ -13,6 +13,7 @@
     tools:showIn="@layout/activity_add_doggopedia">
 
     <LinearLayout
+        android:id="@+id/rootLayoutDP"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

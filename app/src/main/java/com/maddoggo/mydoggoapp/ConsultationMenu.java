@@ -2,13 +2,16 @@ package com.maddoggo.mydoggoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -19,6 +22,7 @@ public class ConsultationMenu extends AppCompatActivity {
     private DatabaseReference dogSymptoms;
 
     private String text,text2,text3;
+    private int pos1, pos2,pos3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,7 @@ public class ConsultationMenu extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
                 text = item.toString();
+                pos1 = pos;
             }
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -74,6 +79,7 @@ public class ConsultationMenu extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
                 text2 = String.valueOf(pos);
+                pos2 = pos;
             }
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -83,16 +89,35 @@ public class ConsultationMenu extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
                 text3 = item.toString();
+                pos3 = pos;
             }
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 
-        Button btn = (Button)findViewById(R.id.buttonConsul);
+        Button btn = findViewById(R.id.buttonConsul);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(pos1 == 0)
+                {
+                    Toast.makeText(getBaseContext(), "There is an item(s) that's not selected.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(pos2 == 0)
+                {
+                    Toast.makeText(getBaseContext(), "There is an item(s) that's not selected.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(pos3 == 0)
+                {
+                    Toast.makeText(getBaseContext(), "There is an item(s) that's not selected.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
                 Intent i = new Intent(getApplicationContext(), ConsultationResult.class);
                 i.putExtra("DogType",text);
                 i.putExtra("Old",text2);

@@ -62,7 +62,6 @@ public class BuyOrSellMenu extends AppCompatActivity implements View.OnClickList
 
         recyclerBuySellMenu = findViewById(R.id.recBuySellMenuList);
 
-
         loadBSM();
 
     }

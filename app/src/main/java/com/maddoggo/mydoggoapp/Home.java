@@ -1,6 +1,7 @@
 package com.maddoggo.mydoggoapp;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,9 +49,6 @@ public class Home extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        /*getSupportActionBar().setLogo(R.drawable.mydoggo_text);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);*/
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -86,14 +84,12 @@ public class Home extends AppCompatActivity
                             .load(dataSnapshot.child("avatarUrl").getValue().toString())
                             .into(mProfileImage);
                 }
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
 
         //Defining Cards
         adoptionCard = findViewById(R.id.adoption_card);
@@ -122,7 +118,6 @@ public class Home extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-
     }
 
     @Override
@@ -198,6 +193,11 @@ public class Home extends AppCompatActivity
 
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseAuth.getInstance().signOut();
+                final ProgressDialog mDialog = new ProgressDialog(Home.this);
+                mDialog.setMessage("Logging out...");
+                mDialog.setCancelable(false);
+                mDialog.setCanceledOnTouchOutside(false);
+                mDialog.show();
                 Intent intent = new Intent(Home.this,MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -217,10 +217,7 @@ public class Home extends AppCompatActivity
         AlertDialog alert = builder.create();
         alert.show();
 
-
-
     }
-
 
     private void getCurrentInfo(){
         users.child(mAuth.getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener() {

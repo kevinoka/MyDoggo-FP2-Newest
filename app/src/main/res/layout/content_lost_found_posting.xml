@@ -11,6 +11,7 @@
     tools:showIn="@layout/activity_lost_found_posting">
 
     <LinearLayout
+        android:id="@+id/rootLayoutLFP"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -11,6 +11,7 @@
     tools:showIn="@layout/activity_sell_posting">
 
     <LinearLayout
+        android:id="@+id/rootLayoutSellPost"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

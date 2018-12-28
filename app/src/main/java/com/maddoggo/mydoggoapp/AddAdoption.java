@@ -6,13 +6,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +40,8 @@ public class AddAdoption extends AppCompatActivity {
     FirebaseStorage storage;
     StorageReference storageRef;
 
+    LinearLayout rootLayoutAdopt;
+
     ImageView imageAddAdoption;
 
     private FirebaseAuth mAuth;
@@ -52,15 +58,10 @@ public class AddAdoption extends AppCompatActivity {
         setContentView(R.layout.activity_add_adoption);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if(getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         //Init Storage --> For the dog picture
         storage = FirebaseStorage.getInstance();
@@ -71,6 +72,8 @@ public class AddAdoption extends AppCompatActivity {
         dogAdoption = Db.getReference("Adoption");
 
         dogAdoptionIn = new Adoption() ;
+
+        rootLayoutAdopt = findViewById(R.id.rootLayoutAdopt);
 
         nameAddAdoption = findViewById(R.id.NameAddAdoption);
         ageAddAdoption = findViewById(R.id.AgeAddAdoption);
@@ -120,10 +123,44 @@ public class AddAdoption extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.save_new_adoption_button) {
-            SaveNewAdoption();
-            /* Intent i = new Intent(getApplicationContext(), AdoptionMenu.class);
-            startActivity(i);*/
-            this.finish();
+
+            if(TextUtils.isEmpty(nameAddAdoption.getText().toString()))
+            {
+                Snackbar.make(rootLayoutAdopt, "Dog name cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(ageAddAdoption.getText().toString())){
+                Snackbar.make(rootLayoutAdopt, "Dog age cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(typeAddAdoption.getText().toString())){
+                Snackbar.make(rootLayoutAdopt, "Dog type cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(descAddAdoption.getText().toString())){
+                Snackbar.make(rootLayoutAdopt, "Dog description cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(phoneAddAdoption.getText().toString())){
+                Snackbar.make(rootLayoutAdopt, "Phone number cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(locationAddAdoption.getText().toString())){
+                Snackbar.make(rootLayoutAdopt, "Location cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else {
+                SaveNewAdoption();
+                /* Intent i = new Intent(getApplicationContext(), AdoptionMenu.class);
+                startActivity(i);*/
+                this.finish();
+            }
 
         }
         return super.onOptionsItemSelected(item);

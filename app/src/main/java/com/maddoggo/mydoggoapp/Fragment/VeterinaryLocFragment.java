@@ -1,4 +1,4 @@
-package com.maddoggo.mydoggoapp;
+package com.maddoggo.mydoggoapp.Fragment;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.maddoggo.mydoggoapp.Interface.VeterinaryLocClickListener;
 import com.maddoggo.mydoggoapp.Model.VetLocation;
+import com.maddoggo.mydoggoapp.R;
 import com.maddoggo.mydoggoapp.ViewHolder.VeterinaryLocViewHolder;
 
 public class VeterinaryLocFragment extends Fragment implements View.OnClickListener {

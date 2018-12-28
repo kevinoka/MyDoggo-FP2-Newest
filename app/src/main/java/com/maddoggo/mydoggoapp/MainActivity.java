@@ -96,10 +96,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                         final ProgressDialog mDialog = new ProgressDialog(MainActivity.this);
-                        mDialog.setMessage("Logging in...");
-                        mDialog.setCancelable(false);
-                        mDialog.setCanceledOnTouchOutside(false);
-                        mDialog.show();
                         dialogInterface.dismiss();
 
                         //check validation
@@ -129,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
                                         SaveSharedPreference.setUserName(MainActivity.this, editEmail.getText().toString());
+                                        final ProgressDialog mDialog = new ProgressDialog(MainActivity.this);
+                                        mDialog.setMessage("Logging in...");
+                                        mDialog.setCancelable(false);
+                                        mDialog.setCanceledOnTouchOutside(false);
+                                        mDialog.show();
                                         startActivity(new Intent(MainActivity.this, Home.class));
                                         finish();
                                     }

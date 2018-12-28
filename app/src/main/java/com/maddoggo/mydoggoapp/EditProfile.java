@@ -6,10 +6,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.Selection;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,16 +39,24 @@ import com.google.firebase.storage.UploadTask;
 import com.maddoggo.mydoggoapp.Model.User;
 import com.squareup.picasso.Picasso;
 
+import com.google.firebase.database.ValueEventListener;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class EditProfile extends AppCompatActivity {
+public class EditProfile extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
     FirebaseStorage storage;
     StorageReference storageRef;
+
+    RelativeLayout rootLayEdit;
 
     ProgressDialog progressDialog;
     UploadTask uploadTask;
@@ -57,6 +68,7 @@ public class EditProfile extends AppCompatActivity {
 
     private EditText editFirstName, editLastName, editEmail, editPhone, editAddress, editBirthday;
     private Button mUploadButton;
+    //private Calendar myCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +89,8 @@ public class EditProfile extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
+        rootLayEdit = findViewById(R.id.rootLayEdit);
+
 
         editFirstName = findViewById(R.id.EditFirstNameProfile);
         Selection.setSelection(editFirstName.getText(), editFirstName.getText().length());
@@ -90,6 +104,7 @@ public class EditProfile extends AppCompatActivity {
         Selection.setSelection(editAddress.getText(), editAddress.getText().length());
         editBirthday = findViewById(R.id.EditBirthdayProfile);
         Selection.setSelection(editBirthday.getText(), editBirthday.getText().length());
+
 
         getCurrentInfo();
 
@@ -227,6 +242,21 @@ public class EditProfile extends AppCompatActivity {
         });
 
 
+        editBirthday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                        EditProfile.this,
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH)
+                );
+                dpd.show(getFragmentManager(),"Datepickerdialog");
+
+            }
+        });
+
         imageView = findViewById(R.id.imageViewProfile);
 
         mUploadButton = findViewById(R.id.UploadPPButton);
@@ -259,7 +289,6 @@ public class EditProfile extends AppCompatActivity {
         });
     }
 
-
     private void getCurrentInfo() {
         users.child(mAuth.getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -283,6 +312,12 @@ public class EditProfile extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        String date = String.format("%02d/%02d/%02d",dayOfMonth,(monthOfYear+1),year%100);
+        editBirthday.setText(date);
+    }
+
     // create an action bar button
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -296,11 +331,35 @@ public class EditProfile extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.SaveButtonEditProfile) {
-            saveProfile();
 
-            Intent i = new Intent(getApplicationContext(), MyProfile.class);
-            startActivity(i);
-            this.finish();
+            if(TextUtils.isEmpty(editEmail.getText().toString()))
+            {
+                Snackbar.make(rootLayEdit, "Email cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editFirstName.getText().toString())){
+                Snackbar.make(rootLayEdit, "First name cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editLastName.getText().toString())){
+                Snackbar.make(rootLayEdit, "Last name cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editBirthday.getText().toString())) {
+                Snackbar.make(rootLayEdit, "Birthday cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else{
+                saveProfile();
+                Intent i = new Intent(getApplicationContext(), MyProfile.class);
+                startActivity(i);
+                this.finish();
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }

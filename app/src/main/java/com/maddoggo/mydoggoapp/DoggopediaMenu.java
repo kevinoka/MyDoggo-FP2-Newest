@@ -79,7 +79,7 @@ public class DoggopediaMenu extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    private void loadDP( ) {
+    private void loadDP() {
 
 
         options = new FirebaseRecyclerOptions.Builder<Doggopedia>()

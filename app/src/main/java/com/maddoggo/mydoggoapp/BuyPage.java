@@ -43,7 +43,7 @@ public class BuyPage extends AppCompatActivity {
         Picasso.with(getBaseContext())
                 .load(done.getSellDogImage())
                 .into(mBuyDogImage);
-        mBuyDogPrice.setText("Rp " +done.getPrice());
+        mBuyDogPrice.setText(done.getPrice());
         mBuyDogDesc.setText(done.getDogDesc());
         mBuyDogLocation.setText("Location: " + done.getSellerLocation());
         mBuyDogPhoneNumber.setText("Phone Number: " + done.getPhoneNumber());
@@ -60,13 +60,13 @@ public class BuyPage extends AppCompatActivity {
             public boolean onMenuItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
 
-                if (id == R.id.action_fab_call) {
+                /*if (id == R.id.action_fab_call) {
                     String url = "https://api.whatsapp.com/send?phone=62"+done.getPhoneNumber();
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));
                     startActivity(i);
-                }
-                else if (id == R.id.action_fab_dialpad) {
+                }*/
+                if (id == R.id.action_fab_dialpad) {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:" + done.getPhoneNumber().toString()));
                     startActivity(intent);

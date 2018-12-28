@@ -5,16 +5,19 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.Selection;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -40,6 +43,8 @@ public class SellPosting extends AppCompatActivity {
     FirebaseStorage storage;
     StorageReference storageRef;
 
+    LinearLayout rootLayoutSellPost;
+
     ImageView imageView;
 
     private FirebaseAuth mAuth;
@@ -58,6 +63,8 @@ public class SellPosting extends AppCompatActivity {
         setContentView(R.layout.activity_sell_posting);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if(getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Init Storage --> For the dog picture
         storage = FirebaseStorage.getInstance();
@@ -69,6 +76,8 @@ public class SellPosting extends AppCompatActivity {
         saleDogByUser = Db.getReference("SaleDogUserList");
 
         saleDogIn = new SaleDog() ;
+
+        rootLayoutSellPost = findViewById(R.id.rootLayoutSellPost);
 
         editNameSellPosting = findViewById(R.id.EditNameSellPosting);
         editPriceSellPosting = findViewById(R.id.EditPriceSellPosting);
@@ -136,7 +145,6 @@ public class SellPosting extends AppCompatActivity {
             }
         });
 
-
     }
 
     // create an action bar button
@@ -152,10 +160,39 @@ public class SellPosting extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.mybutton) {
-            SaveSellDog();
-            Intent i = new Intent(getApplicationContext(), BuyOrSellMenu.class);
-            startActivity(i);
-            this.finish();
+
+            if(TextUtils.isEmpty(editNameSellPosting.getText().toString()))
+            {
+                Snackbar.make(rootLayoutSellPost, "Dog name cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editDescSellPosting.getText().toString())){
+                Snackbar.make(rootLayoutSellPost, "Dog description cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editLocationSellPosting.getText().toString())) {
+                Snackbar.make(rootLayoutSellPost, "Location cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editPriceSellPosting.getText().toString())) {
+                Snackbar.make(rootLayoutSellPost, "Price cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editPhoneSellPosting.getText().toString())) {
+                Snackbar.make(rootLayoutSellPost, "Phone number cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else {
+                SaveSellDog();
+                Intent i = new Intent(getApplicationContext(), BuyOrSellMenu.class);
+                startActivity(i);
+                this.finish();
+            }
 
         }
         return super.onOptionsItemSelected(item);

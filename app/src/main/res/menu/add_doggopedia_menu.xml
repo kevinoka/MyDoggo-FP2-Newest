@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/save_new_doggopedia_button"
-        android:title="SAVE"
+        android:title="POST"
         android:iconTint="@color/colorAccent"
         app:showAsAction="always"
         />

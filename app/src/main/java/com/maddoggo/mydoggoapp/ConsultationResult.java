@@ -6,12 +6,15 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class ConsultationResult extends AppCompatActivity {
 
@@ -24,9 +27,10 @@ public class ConsultationResult extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultation_result);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Db = FirebaseDatabase.getInstance();
         dogSymptoms = Db.getReference("DogSymptoms");
@@ -41,12 +45,8 @@ public class ConsultationResult extends AppCompatActivity {
         text2 =  i.getStringExtra("Old");
         text3 =  i.getStringExtra("Symptoms");
 
-        //Toast.makeText(ConsultationResult.this, text, Toast.LENGTH_SHORT).show();
-        //Toast.makeText(ConsultationResult.this, text2, Toast.LENGTH_SHORT).show();
-        //Toast.makeText(ConsultationResult.this, text3, Toast.LENGTH_SHORT).show();
         mConsulDogBreed.setText(text);
         mConsulDogAge.setText(text2);
-
 
         checkSymptoms(text,text2,text3);
 
@@ -62,7 +62,7 @@ public class ConsultationResult extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             //Toast.makeText(getBaseContext(), dataSnapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
-                            mConsulDiagResult.setText(dataSnapshot.getValue().toString());
+                            mConsulDiagResult.setText(Objects.requireNonNull(dataSnapshot.getValue()).toString());
                         }
 
                         @Override
@@ -72,8 +72,8 @@ public class ConsultationResult extends AppCompatActivity {
                     });
                 }
                 else{
-                }
 
+                }
 
             }
 

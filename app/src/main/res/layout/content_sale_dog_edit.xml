@@ -13,6 +13,7 @@
     tools:showIn="@layout/activity_sale_dog_edit">
 
     <LinearLayout
+        android:id="@+id/rootLayoutSDEdit"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -46,6 +46,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,6 +62,8 @@
         <activity
             android:name=".AdoptionMenu"
             android:label="@string/title_activity_adoption_menu"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -139,6 +143,8 @@
         <activity
             android:name=".LostPage"
             android:label="@string/title_activity_lost_page"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -151,6 +157,8 @@
         <activity
             android:name=".EditProfile"
             android:label="@string/title_activity_edit_profile"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName=".MyProfile"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -168,6 +176,8 @@
         <activity
             android:name=".SellPosting"
             android:label="@string/title_activity_sell_posting"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -176,6 +186,8 @@
         <activity
             android:name=".LostFoundPosting"
             android:label="@string/title_activity_last_found_posting"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -200,6 +212,8 @@
         <activity
             android:name=".MyPost"
             android:label="@string/title_activity_my_post"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -216,18 +230,38 @@
         <activity
             android:name=".LostFoundEdit"
             android:label="Edit your post"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maddoggo.mydoggoapp.LostFoundMenu" />
+        </activity>
         <activity
             android:name=".SaleDogEdit"
             android:label="@string/title_activity_sale_dog_edit"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maddoggo.mydoggoapp.MyPost" />
+        </activity>
         <activity
             android:name=".AddAdoption"
             android:label="@string/title_activity_add_adoption"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.maddoggo.mydoggoapp.AdoptionMenu" />
+        </activity>
         <activity
             android:name=".AddDoggopedia"
             android:label="@string/title_activity_add_doggopedia"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

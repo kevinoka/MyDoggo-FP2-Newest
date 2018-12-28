@@ -81,12 +81,13 @@ public class LostPage extends AppCompatActivity {
             public boolean onMenuItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
 
-                if (id == R.id.action_fab_call) {
+                /*if (id == R.id.action_fab_call) {
                     String url = "https://api.whatsapp.com/send?phone=+62"+done.getPhoneNumber();
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));
                     startActivity(i);
-                }else if (id == R.id.action_fab_dialpad) {
+                }*/
+                if (id == R.id.action_fab_dialpad) {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:" + done.getPhoneNumber()));
                     startActivity(intent);

@@ -6,13 +6,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +39,8 @@ public class SaleDogEdit extends AppCompatActivity {
     FirebaseStorage storage;
     StorageReference storageRef;
 
+    LinearLayout rootLayoutSDEdit;
+
     ImageView imageView;
 
     private FirebaseAuth mAuth;
@@ -53,8 +58,10 @@ public class SaleDogEdit extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sale_dog_edit);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if(getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Init Storage --> For the dog picture
         storage = FirebaseStorage.getInstance();
@@ -66,6 +73,8 @@ public class SaleDogEdit extends AppCompatActivity {
         saleDogByUser = Db.getReference("SaleDogUserList");
 
         saleDogIn = new SaleDog() ;
+
+        rootLayoutSDEdit = findViewById(R.id.rootLayoutSDEdit);
 
         editNameSaleDogEdit = findViewById(R.id.EditNameSaleDogEdit);
         editPriceSaleDogEdit = findViewById(R.id.EditPriceSaleDogEdit);
@@ -137,8 +146,42 @@ public class SaleDogEdit extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.mybutton) {
-            SaveSellDogEdit();
-            this.finish();
+
+            if(TextUtils.isEmpty(editNameSaleDogEdit.getText().toString()))
+            {
+                Snackbar.make(rootLayoutSDEdit, "Dog name cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            /*else if(TextUtils.isEmpty(imageView.toString())){
+                Snackbar.make(rootLayoutSDEdit, "Image cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }*/
+            else if(TextUtils.isEmpty(editDescSaleDogEdit.getText().toString())){
+                Snackbar.make(rootLayoutSDEdit, "Dog description cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editLocationSaleDogEdit.getText().toString())) {
+                Snackbar.make(rootLayoutSDEdit, "Location cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editPriceSaleDogEdit.getText().toString())) {
+                Snackbar.make(rootLayoutSDEdit, "Price cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else if(TextUtils.isEmpty(editPhoneSaleDogEdit.getText().toString())) {
+                Snackbar.make(rootLayoutSDEdit, "Phone number cannot be empty", Snackbar.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+            else{
+                SaveSellDogEdit();
+                this.finish();
+            }
         }
         return super.onOptionsItemSelected(item);
     }
