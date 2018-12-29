@@ -15,16 +15,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Button" parent="Widget.MaterialComponents.Button" />
-
-    <style name="Button.Branded" parent="Widget.MaterialComponents.Button">
-        <item name="colorButtonNormal">@android:color/white</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+    <style name="AppTheme.NoActionBar"></style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light" />
 

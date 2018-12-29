@@ -70,7 +70,6 @@ public class BreedingResult extends AppCompatActivity {
                             .load(Objects.requireNonNull(dataSnapshot.child("DogPic").getValue()).toString())
                             .into(dogBreedImage);
 
-
                 }
                 else{
                 }

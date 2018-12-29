@@ -10,11 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -88,8 +85,6 @@ public class DoggopediaMenu extends AppCompatActivity implements View.OnClickLis
 
         adapter = new FirebaseRecyclerAdapter<Doggopedia, DoggopediaViewHolder>(options) {
 
-
-
             @NonNull
             @Override
             public DoggopediaViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -117,7 +112,6 @@ public class DoggopediaMenu extends AppCompatActivity implements View.OnClickLis
 
                     }
                 });
-
             }
 
         };
@@ -127,8 +121,6 @@ public class DoggopediaMenu extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        /*Intent i = new Intent(getApplicationContext(), Home.class);
-        startActivity(i);*/
     }
 
     @Override

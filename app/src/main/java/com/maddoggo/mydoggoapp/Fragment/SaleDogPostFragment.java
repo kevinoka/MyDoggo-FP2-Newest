@@ -73,7 +73,6 @@ public class SaleDogPostFragment extends Fragment implements View.OnClickListene
 
         adapter = new FirebaseRecyclerAdapter<SaleDog, SaleDogPostViewHolder>(options) {
 
-
             @NonNull
             @Override
             public SaleDogPostViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -86,7 +85,7 @@ public class SaleDogPostFragment extends Fragment implements View.OnClickListene
 
             @Override
             protected void onBindViewHolder(@NonNull SaleDogPostViewHolder holder, final int position, @NonNull final SaleDog model) {
-                //holder.BSUserName.setText(model.getOwner());
+
                 holder.BSDogName.setText(model.getDogName());
                 holder.BSDogPrice.setText(model.getPrice());
                 holder.BSDogPlace.setText(model.getSellerLocation());
@@ -94,8 +93,6 @@ public class SaleDogPostFragment extends Fragment implements View.OnClickListene
                 Picasso.with(getActivity())
                         .load(model.getSellDogImage())
                         .into(holder.BSDogImage);
-
-                //final SaleDog clickItem = model;
 
                 holder.BSCard.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -119,9 +116,7 @@ public class SaleDogPostFragment extends Fragment implements View.OnClickListene
                 holder.SaleDogPostDeleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //lostFoundDog.child(adapter.getRef(position).getKey()).removeValue();
-                        //Toast.makeText(getContext(), model.getDogName(), Toast.LENGTH_SHORT).show();
-                        //adapter.getRef(position).removeValue();
+
                         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
                         builder.setTitle("Delete");

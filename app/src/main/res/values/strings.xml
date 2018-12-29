@@ -2,14 +2,10 @@
     <string name="app_name">MyDoggo</string>
     <string name="slogan1" translatable="false">Welcome to MyDoggo</string>
     <string name="slogan2">Get all things that matters for you and your dog.</string>
-    <string name="title_activity_login">Sign in</string>
     <string name="title_activity_home_navigation_drawer">Home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">MyDoggo</string>
-    <string name="nav_header_subtitle">mydoggo@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Feedback</string>
     <string name="title_activity_adoption_menu">Adoption</string>
     <string name="title_activity_breeding_menu">Breeding</string>
     <string name="title_activity_buy_or_sell_menu">Buy</string>
@@ -17,34 +13,8 @@
     <string name="title_activity_doggopedia_menu">Doggopedia</string>
     <string name="title_activity_location_menu">Location Information</string>
     <string name="title_activity_lost_found_menu">Lost</string>
-    <string name="title_activity_maps">Map</string>
-    <string name="siberian_husky_desc">The Siberian Husky is a medium size working dog breed that originated in Northeast Asia. The breed belongs to the Spitz genetic family.</string>
-    <string name="labrador_retriever_desc">The Labrador Retriever, or just Labrador, is a type of retriever-gun dog. The Labrador is one of the most popular breeds of dog in Canada, United Kingdom and United States.</string>
-    <string name="beagle_desc">The beagle is a breed of small hound that is similar in appearance to the much larger foxhound. The beagle is a scent hound, developed primarily for hunting hare.</string>
     <string name="dog_sell_title1">White Brown Dog</string>
     <string name="dog_sell_description1">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
-    <string-array name="dog_array">
-        <item>Affenpinscher</item>
-        <item>Afghan Hound</item>
-        <item>Airedale Terrier</item>
-        <item>Akita</item>
-        <item>Alaskan Klee Kai</item>
-        <item>Alaskan Malamute</item>
-        <item>American Bulldog</item>
-        <item>American English Coonhound</item>
-        <item>American Eskimo Dog</item>
-        <item>American Foxhound</item>
-        <item>American Pit Bull Terrier</item>
-        <item>American Staffordshire Terrier</item>
-        <item>American Water Spaniel</item>
-        <item>Anatolian Shepherd Dog</item>
-        <item>Appenzeller Sennenhunde</item>
-        <item>Australian Cattle Dog</item>
-        <item>Australian Kelpie</item>
-        <item>Australian Shepherd</item>
-        <item>Australian Terrier</item>
-        <item>Azawakh</item>
-    </string-array>
 
     <string-array name="consul1">
         <item>Please select the breed of your dog…</item>
@@ -109,7 +79,6 @@
     <string name="title_activity_last_found_posting">Create Post</string>
     <string name="title_activity_breeding_result">Result</string>
     <string name="title_activity_consultation_result">Result</string>
-    <string name="consultation_result_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
 
 
     <string name="adoption_menu_title">ADOPTION</string>
@@ -135,14 +104,11 @@
     <string name="dog_characteristics_LF">Dog characteristics</string>
     <string name="phone_number_LF">Phone number</string>
     <string name="characteristics_LF">Characteristics</string>
-    <string name="rupiah_sell_posting_class">Rp </string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="choose_image">Choose image</string>
     <string name="price">Price</string>
-    <string name="title_activity_user_sell_post_list">Sell Post List</string>
     <string name="title_activity_my_post">My Post</string>
     <string name="title_activity_adopt_now">Adopt Now</string>
     <string name="lost_dog_item_edit_button">Edit button</string>
@@ -153,11 +119,9 @@
     <string name="dog_image_for_adoption">Dog image for adoption</string>
     <string name="dog_picture_fav_adoption">Dog picture</string>
     <string name="add_your_picture">Add your picture</string>
-    <string name="descr_overflow_button">Overflow button</string>
     <string name="description_hint">Description</string>
     <string name="location_hint">Location</string>
     <string name="name_hint">Name</string>
     <string name="map_button">Map button</string>
-    <string name="veterinary_text">Veterinary</string>
 
 </resources>

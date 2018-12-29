@@ -119,7 +119,6 @@ public class LostFoundEdit extends AppCompatActivity {
                 lostFoundDog.child(key).child("dogChara").setValue(editLFChara.getText().toString());
                 lostFoundDog.child(key).child("dogLastSeen").setValue(editLFDogLastSeen.getText().toString());
                 lostFoundDog.child(key).child("dogType").setValue(editLFDogTypeLF.getText().toString());
-
                 lostFoundDog.child(key).child("dogPict").setValue(lostDog.getDogPict());
 
             }

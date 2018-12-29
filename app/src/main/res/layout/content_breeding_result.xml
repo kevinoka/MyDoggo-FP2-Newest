@@ -67,11 +67,12 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:contentDescription="@string/dog_image"
                 android:id="@+id/DogBreedImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/questionmark" />
+                app:srcCompat="@drawable/question_mark" />
 
         </RelativeLayout>
 

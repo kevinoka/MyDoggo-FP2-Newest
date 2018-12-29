@@ -104,7 +104,7 @@ public class BreedingMenu extends AppCompatActivity {
                 i.putExtra("DogBreed",text);
                 i.putExtra("Type1",type1);
                 i.putExtra("Type2",type2);
-                //i.putExtra("DogBreed",text);
+
                 i.putExtra("Old",text2);
                 i.putExtra("PrefDog",text3);
 

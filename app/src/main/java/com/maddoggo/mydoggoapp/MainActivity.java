@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         users = db.getReference("Users");
 
         //init view
-
         btnSignUp = findViewById(R.id.btnSignUp);
         btnSignIn = findViewById(R.id.btnSignIn);
         rootLayout = findViewById(R.id.rootLayout);
@@ -77,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     private void showLoginDialog() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Log In");
@@ -100,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
 
                         //check validation
                         if (TextUtils.isEmpty(editEmail.getText().toString())) {
-                            //editEmail.setError("The Email cannot be empty.");
                             Snackbar.make(rootLayout, "Please enter your email address", Snackbar.LENGTH_SHORT)
                                     .show();
                             return;
@@ -142,7 +139,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
 
-
                     }
                 });
 
@@ -152,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
                 dialogInterface.dismiss();
             }
         });
-
 
         dialog.show();
     }
@@ -269,7 +264,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dialog.show();
-
 
     }
 }

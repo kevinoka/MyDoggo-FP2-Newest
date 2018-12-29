@@ -17,8 +17,7 @@
         android:background="@drawable/spinner_border"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"
-        android:layout_weight="1"/>
+        android:layout_marginTop="50dp"/>
 
     <Spinner
         android:id="@+id/spinnerBreeding2"
@@ -30,7 +29,6 @@
         android:layout_marginTop="150dp" />
 
     <TextView
-        android:id="@+id/textBreeding1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -40,7 +38,6 @@
         android:text="Your dog's age" />
 
     <TextView
-        android:id="@+id/textBreeding2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -59,7 +56,6 @@
         android:layout_marginTop="250dp" />
 
     <TextView
-        android:id="@+id/textBreeding3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

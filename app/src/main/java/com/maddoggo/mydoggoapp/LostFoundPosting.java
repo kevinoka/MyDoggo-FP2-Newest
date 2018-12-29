@@ -168,7 +168,6 @@ public class LostFoundPosting extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select picture"), 9999);
 
-
     }
 
     @Override

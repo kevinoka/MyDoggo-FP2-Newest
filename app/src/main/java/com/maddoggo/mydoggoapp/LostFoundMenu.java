@@ -69,7 +69,6 @@ public class LostFoundMenu extends AppCompatActivity {
 
         adapter = new FirebaseRecyclerAdapter<LostFoundDog, LostFoundViewHolder>(options) {
 
-
             @NonNull
             @Override
             public LostFoundViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -108,7 +107,6 @@ public class LostFoundMenu extends AppCompatActivity {
 
                     }
                 });
-
             }
 
         };

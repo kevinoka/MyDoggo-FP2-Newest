@@ -58,8 +58,6 @@ public class VeterinaryLocFragment extends Fragment implements View.OnClickListe
 
         adapter = new FirebaseRecyclerAdapter<VetLocation, VeterinaryLocViewHolder>(options) {
 
-
-
             @NonNull
             @Override
             public VeterinaryLocViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {

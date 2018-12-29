@@ -11,7 +11,7 @@ import com.maddoggo.mydoggoapp.Interface.SaleDogPostClickListener;
 import com.maddoggo.mydoggoapp.R;
 
 public class SaleDogPostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    public TextView BSUserName, BSDogName, BSDogPrice, BSDogPlace;
+    public TextView BSDogName, BSDogPrice, BSDogPlace;
     public ImageView BSDogImage;
     public CardView BSCard;
 
@@ -22,7 +22,6 @@ public class SaleDogPostViewHolder extends RecyclerView.ViewHolder implements Vi
     public SaleDogPostViewHolder(View itemView){
         super(itemView);
 
-        //BSUserName = itemView.findViewById(R.id.BSUserName);
         BSDogName = itemView.findViewById(R.id.BSDogName);
         BSDogPrice = itemView.findViewById(R.id.BSDogPrice);
         BSDogPlace = itemView.findViewById(R.id.BSDogPlace);

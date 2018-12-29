@@ -97,7 +97,6 @@ public class LostPage extends AppCompatActivity {
                     sendIntent.setData(Uri.parse("sms:"+ done.getPhoneNumber()));
                     startActivity(sendIntent);
                 }
-                //Toast.makeText(LostPage.this, ""+menuItem.getTitle(), Toast.LENGTH_SHORT).show();
                 return true;
             }
 

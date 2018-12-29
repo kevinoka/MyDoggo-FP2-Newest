@@ -58,8 +58,6 @@ public class PetShopLocFragment extends Fragment implements View.OnClickListener
 
         adapter = new FirebaseRecyclerAdapter<PetShopLocation, PetShopLocViewHolder>(options) {
 
-
-
             @NonNull
             @Override
             public PetShopLocViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {

@@ -38,7 +38,6 @@ public class BuyPage extends AppCompatActivity {
 
         Intent i = getIntent();
         final SaleDog done = (SaleDog) i.getSerializableExtra("SaleDogClass");
-        //saleDog = getIntent().getSerializableExtra("SaleDogClass");
         toolbar.setTitle(done.getDogName());
         Picasso.with(getBaseContext())
                 .load(done.getSellDogImage())
@@ -76,7 +75,6 @@ public class BuyPage extends AppCompatActivity {
                     sendIntent.setData(Uri.parse("sms:" + done.getPhoneNumber().toString()));
                     startActivity(sendIntent);
                 }
-                //Toast.makeText(BuyPage.this, ""+menuItem.getTitle(), Toast.LENGTH_SHORT).show();
                 return true;
             }
 

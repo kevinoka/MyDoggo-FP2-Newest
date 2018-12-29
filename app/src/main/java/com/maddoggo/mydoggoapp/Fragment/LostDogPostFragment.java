@@ -10,11 +10,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -75,7 +73,6 @@ public class LostDogPostFragment extends Fragment implements View.OnClickListene
 
         adapter = new FirebaseRecyclerAdapter<LostFoundDog, LostDogPostViewHolder>(options) {
 
-
             @NonNull
             @Override
             public LostDogPostViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -97,15 +94,12 @@ public class LostDogPostFragment extends Fragment implements View.OnClickListene
                         .load(model.getDogPict())
                         .into(holder.LFDogPict);
 
-                //final LostFoundDog clickItem = model;
-
                 holder.LFCard.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent i = new Intent(view.getContext(), LostPage.class);
                         i.putExtra("LostFoundDogClass", model);
                         startActivity(i);
-                        //Toast.makeText(BuyOrSellMenu.this, "Niceeee", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -113,7 +107,6 @@ public class LostDogPostFragment extends Fragment implements View.OnClickListene
                     @Override
                     public void onClick(View v) {
 
-                        //Toast.makeText(getContext(), model.getDogName(), Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getContext(), LostFoundEdit.class);
                         i.putExtra("LostFoundDogClass", model);
                         i.putExtra("Key", adapter.getRef(position).getKey());
@@ -124,9 +117,7 @@ public class LostDogPostFragment extends Fragment implements View.OnClickListene
                 holder.LostDogPostDeleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //lostFoundDog.child(adapter.getRef(position).getKey()).removeValue();
-                        //Toast.makeText(getContext(), model.getDogName(), Toast.LENGTH_SHORT).show();
-                        //adapter.getRef(position).removeValue();
+
                         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
                         builder.setTitle("Confirm");

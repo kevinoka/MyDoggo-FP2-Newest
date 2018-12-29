@@ -22,7 +22,6 @@ import com.maddoggo.mydoggoapp.Model.Adoption;
 import com.maddoggo.mydoggoapp.ViewHolder.FavoriteAdoptionViewHolder;
 import com.squareup.picasso.Picasso;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 public class FavoriteAdoption extends AppCompatActivity implements View.OnClickListener {
@@ -68,7 +67,6 @@ public class FavoriteAdoption extends AppCompatActivity implements View.OnClickL
                 .build();
 
         adapter = new FirebaseRecyclerAdapter<Adoption, FavoriteAdoptionViewHolder>(options) {
-
 
             @Override
             protected void onBindViewHolder(@NonNull FavoriteAdoptionViewHolder holder, int position, @NonNull Adoption model) {

@@ -116,7 +116,6 @@ public class SaleDogEdit extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long no = dataSnapshot.getChildrenCount();
 
-
                 saleDog.child(key).child("dogName").setValue(editNameSaleDogEdit.getText().toString());
                 saleDog.child(key).child("dogDesc").setValue(editDescSaleDogEdit.getText().toString());
                 saleDog.child(key).child("sellerLocation").setValue(editLocationSaleDogEdit.getText().toString());
@@ -153,11 +152,6 @@ public class SaleDogEdit extends AppCompatActivity {
                         .show();
                 return false;
             }
-            /*else if(TextUtils.isEmpty(imageView.toString())){
-                Snackbar.make(rootLayoutSDEdit, "Image cannot be empty", Snackbar.LENGTH_SHORT)
-                        .show();
-                return false;
-            }*/
             else if(TextUtils.isEmpty(editDescSaleDogEdit.getText().toString())){
                 Snackbar.make(rootLayoutSDEdit, "Dog description cannot be empty", Snackbar.LENGTH_SHORT)
                         .show();

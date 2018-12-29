@@ -36,8 +36,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.UUID;
 
-import static com.maddoggo.mydoggoapp.R.string.rupiah_sell_posting_class;
-
 public class SellPosting extends AppCompatActivity {
 
     FirebaseStorage storage;
@@ -121,7 +119,6 @@ public class SellPosting extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long no = dataSnapshot.getChildrenCount();
 
-
                 saleDogIn.setDogName(editNameSellPosting.getText().toString());
                 saleDogIn.setPrice(editPriceSellPosting.getText().toString());
                 saleDogIn.setSellerLocation(editLocationSellPosting.getText().toString());
@@ -198,7 +195,6 @@ public class SellPosting extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select picture"), 9999);
-
 
     }
 
