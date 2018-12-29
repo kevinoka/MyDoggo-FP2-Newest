@@ -10,9 +10,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -65,10 +67,8 @@ public class LostDogPostFragment extends Fragment implements View.OnClickListene
 
     private void loadLDPostPerUser() {
 
-        //saleDogUserList --> nama database refrence kyk saleDog tapi arahnya ke table saleDogUserList di database
         Query query = lostFoundDogByUser.child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid().toString());
 
-        //ininya juga beda, cuma berubah jd setIndexedQuery
         options = new FirebaseRecyclerOptions.Builder<LostFoundDog>()
                 .setIndexedQuery(query,lostFoundDog,LostFoundDog.class)
                 .build();

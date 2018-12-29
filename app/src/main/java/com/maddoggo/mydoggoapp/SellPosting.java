@@ -87,7 +87,6 @@ public class SellPosting extends AppCompatActivity {
 
         imageView = findViewById(R.id.ImageSellPosting);
 
-        editPriceSellPosting.setText(rupiah_sell_posting_class);
         Selection.setSelection(editPriceSellPosting.getText(), editPriceSellPosting.getText().length());
 
 
@@ -101,11 +100,7 @@ public class SellPosting extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(!s.toString().startsWith("Rp")){
-                    editPriceSellPosting.setText("Rp");
-                    Selection.setSelection(editPriceSellPosting.getText(), editPriceSellPosting.getText().length());
-
-                }
+                Selection.setSelection(editPriceSellPosting.getText(), editPriceSellPosting.getText().length());
 
             }
 
@@ -223,13 +218,13 @@ public class SellPosting extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                Toast.makeText(getBaseContext(), "Image was uploaded", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(), "Image uploaded", Toast.LENGTH_SHORT).show();
 
                                 imageFolder.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         saleDogIn.setSellDogImage(uri.toString());
-                                        Toast.makeText(getBaseContext(), "Image was uploaded", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getBaseContext(), "Image uploaded", Toast.LENGTH_SHORT).show();
                                         progressDialog.dismiss();
 
                                         Picasso.with(getBaseContext())
